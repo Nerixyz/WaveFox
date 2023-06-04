@@ -1,0 +1,40 @@
+:root {
+  --toolbarbutton-border-radius: 12px !important;
+}
+
+#statuspanel-label {
+  background-color: #171717 !important;
+  border: 1px none #171717 !important;
+  border-top-style: solid !important;
+  border-radius: 10px !important;
+  padding-right: 7.5px !important;
+  color: white !important;
+}
+
+#personal-toolbar-empty-description,
+toolbarbutton.bookmark-item:not(.subviewbutton) {
+  padding: var(--bookmark-block-padding) 8px !important;
+}
+
+#navigator-toolbox {
+  border-bottom: none !important;
+}
+
+/* Newtab */
+.activity-stream {
+  background-color: #121212 !important;
+}
+
+/* flash fix */
+
+browser,
+browser.display.background_color,
+tabbrowser tabpanels {
+  background-color: #121212 !important;
+}
+
+/* white flash fix */
+browser[type='content-primary'],
+browser[type='content'] {
+  background: #121212 !important;
+}
