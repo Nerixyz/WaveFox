@@ -775,6 +775,11 @@ spacer[part="overflow-end-indicator"]
     background-image: none !important;
 }
 
+#tabbrowser-tabs[movingtab] .tabbrowser-tab:is([visuallyselected], [multiselected])
+{
+    color: rgb(0,0,0) !important;
+}
+
 #tabbrowser-tabs[movingtab] .tabbrowser-tab:is([visuallyselected], [multiselected]) .tab-background
 {
     --toolbar-bgcolor: var(--warning-icon-bgcolor);
@@ -801,7 +806,7 @@ spacer[part="overflow-end-indicator"]
 
 .tab-content
 {
-    padding: 0 calc((var(--tab-min-height) - 16px) / 2 + var(--pinned-tabs-width-offset, 0px)) !important;
+    padding-inline: calc((var(--tab-min-height) - 16px) / 2 + var(--pinned-tabs-width-offset, 0px)) !important;
 }
 
 .tabbrowser-tab[pending] .tab-content
@@ -822,6 +827,23 @@ spacer[part="overflow-end-indicator"]
     {
         box-shadow: inset 0 2px 0 var(--tab-loading-fill) !important;
     }
+}
+
+/* -------------------- Tab Counter -------------------- */
+
+#tabbrowser-tabs
+{
+    counter-reset: TabCounter;
+}
+
+.tabbrowser-tab
+{
+    counter-increment: TabCounter;
+}
+
+#tabbrowser-tabs ~ #alltabs-button::after
+{
+    content: counter(TabCounter);
 }
 
 /* -------------------- Container Indicators -------------------- */
@@ -900,6 +922,11 @@ spacer[part="overflow-end-indicator"]
     mask-size: 16px 16px;
 }
 
+:root:-moz-locale-dir(rtl) .tabbrowser-tab:is([pinned], [image], [sharing], [pictureinpicture]):is([soundplaying], [muted], [activemedia-blocked]):not([busy], [crashed]) .tab-icon-stack > :not(.tab-icon-overlay)
+{
+    mask-image: url("special/Additional_Elements/Media_rtl.svg");
+}
+
 /* ---------- Picture-In-Picture ---------- */
 
 .tabbrowser-tab[pictureinpicture]:not([busy], [crashed]) .tab-icon-stack::before
@@ -917,11 +944,16 @@ spacer[part="overflow-end-indicator"]
     -moz-context-properties: fill;
 }
 
+:root:-moz-locale-dir(rtl) .tabbrowser-tab[pictureinpicture]:not([busy], [crashed]) .tab-icon-stack::before
+{
+    transform: rotateY(180deg);
+}
+
 .tabbrowser-tab[pictureinpicture]:not([busy], [crashed]) .tab-icon-stack > :not(.tab-icon-overlay)
 {
     position: relative !important;
     padding: 2px !important;
-    left: 8px !important;
+    inset-inline-start: 8px !important;
     top: 8px !important;
     mask-image: none !important;
     box-sizing: border-box !important;
@@ -992,95 +1024,113 @@ spacer[part="overflow-end-indicator"]
 #TabsToolbar-customization-target > :is(toolbarbutton, toolbaritem):first-child,
 #TabsToolbar-customization-target > toolbarpaletteitem:first-child > :is(toolbarbutton, toolbaritem)
 {
-    margin-left: calc(var(--toolbar-start-end-padding) - var(--toolbarbutton-outer-padding)) !important;
+    margin-inline-start: calc(var(--toolbar-start-end-padding) - var(--toolbarbutton-outer-padding)) !important;
 }
 
 #TabsToolbar-customization-target > :is(toolbarbutton, toolbaritem):last-child,
 #TabsToolbar-customization-target > toolbarpaletteitem:last-child > :is(toolbarbutton, toolbaritem)
 {
-    margin-right: calc(var(--toolbar-start-end-padding) - var(--toolbarbutton-outer-padding)) !important;
+    margin-inline-end: calc(var(--toolbar-start-end-padding) - var(--toolbarbutton-outer-padding)) !important;
 }
 
-#tabbrowser-tabs:not([overflow]) .tabbrowser-tab[first-visible-unpinned-tab]
+#tabbrowser-tabs:not([overflow]) .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden]))
 {
-    margin-left: 0px !important;
+    margin-inline-start: 0px !important;
 }
 
-#tabbrowser-tabs:not([overflow]) .tabbrowser-tab:not([hidden]):first-of-type,
-#tabbrowser-tabs:not([overflow]) .tabbrowser-tab[hidden]:first-of-type + .tabbrowser-tab:not([hidden]),
-#tabbrowser-tabs:not([overflow]) .tabbrowser-tab[hidden]:first-of-type ~ .tabbrowser-tab[hidden] + .tabbrowser-tab:not([hidden]),
-#tabbrowser-tabs[positionpinnedtabs],
-#tabbrowser-tabs[overflow] .tabbrowser-tab[first-visible-unpinned-tab]
+#tabbrowser-tabs:not([overflow]) .tabbrowser-tab:nth-child(1 of :not([hidden])),
+#tabbrowser-tabs[overflow] .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])),
+#tabbrowser-tabs[overflow][haspinnedtabs]
 {
-    margin-left: var(--tab-first-last-inline-margin) !important;
+    margin-inline-start: var(--tab-first-last-inline-margin) !important;
 }
 
 .tabbrowser-tab:not([hidden]):last-of-type,
 .tabbrowser-tab:not([hidden]):has(+ .tabbrowser-tab[hidden]:last-of-type),
 .tabbrowser-tab:not([hidden]):has(+ .tabbrowser-tab[hidden] ~ .tabbrowser-tab[hidden]:last-of-type)
 {
-    margin-right: var(--tab-first-last-inline-margin) !important;
+    margin-inline-end: var(--tab-first-last-inline-margin) !important;
 }
 
 /* ---------------------------------------- Separators ---------------------------------------- */
 
-.tab-stack
+@supports -moz-bool-pref("userChrome.TabSeparatorsLowSaturation-Enabled")    or
+          -moz-bool-pref("userChrome.TabSeparatorsMediumSaturation-Enabled")
 {
-    margin-left: 1px !important;
-}
+    .tab-stack
+    {
+        margin-inline-start: 1px !important;
+    }
 
-#tabbrowser-tabs:not([movingtab]) .tab-stack::before
-{
-    content: "";
-    display: block;
-    position: absolute;
-    width: 1px;
-    height: 50%;
-    border-left: 1px solid currentColor;
-    top: 25%;
-    opacity: var(--separators-color-saturation, 0);
-    box-sizing: border-box;
-    pointer-events: none;
-}
-    
-.tab-stack::before
-{
-    right: 100%;
-    transform: translateX(calc(-1 * var(--tab-separator-offset)));
-}
+    #tabbrowser-tabs:not([movingtab]) .tab-stack::before
+    {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 1px;
+        height: 50%;
+        border-inline-start: 1px solid currentColor;
+        top: 25%;
+        opacity: var(--separators-color-saturation);
+        box-sizing: border-box;
+        pointer-events: none;
+    }
 
-.tabbrowser-tab:not([hidden]):is(
-                                 [selected],
-                                 [selected] + .tabbrowser-tab:not([hidden]),
-                                 [selected] + .tabbrowser-tab[hidden] ~ .tabbrowser-tab:not([hidden]),
-                                 :hover,
-                                 :hover + .tabbrowser-tab:not([hidden]),
-                                 :hover + .tabbrowser-tab[hidden] ~ .tabbrowser-tab:not([hidden]),
-                                 [multiselected],
-                                 [multiselected] + .tabbrowser-tab:not([hidden]),
-                                 [multiselected] + .tabbrowser-tab[hidden] ~ .tabbrowser-tab:not([hidden])
-                                ) .tab-stack::before
-{
-    opacity: 0 !important;
-} 
+    .tab-stack::before
+    {
+        inset-inline-end: 100%;
+        transform: translateX(calc(-1 * var(--tab-separator-offset)));
+    }
 
-.tabbrowser-tab[usercontextid] .tab-stack::before,
-.tabbrowser-tab[usercontextid] + .tabbrowser-tab:not([hidden]) .tab-stack::before,
-.tabbrowser-tab[usercontextid] + .tabbrowser-tab[hidden] ~ .tabbrowser-tab:not([hidden]) .tab-stack::before
-{
-    opacity: 0 !important;
-}
+    .tabbrowser-tab:not([hidden]):is(
+                                     [selected],
+                                     [selected] + .tabbrowser-tab:not([hidden]),
+                                     [selected] + .tabbrowser-tab[hidden] ~ .tabbrowser-tab:not([hidden]),
+                                     :hover,
+                                     :hover + .tabbrowser-tab:not([hidden]),
+                                     :hover + .tabbrowser-tab[hidden] ~ .tabbrowser-tab:not([hidden]),
+                                     [multiselected],
+                                     [multiselected] + .tabbrowser-tab:not([hidden]),
+                                     [multiselected] + .tabbrowser-tab[hidden] ~ .tabbrowser-tab:not([hidden])
+                                    ) .tab-stack::before
+    {
+        opacity: 0 !important;
+    }
 
-.tabbrowser-tab:not([hidden]):first-of-type .tab-stack::before,
-.tabbrowser-tab[hidden]:first-of-type + .tabbrowser-tab:not([hidden]) .tab-stack::before,
-.tabbrowser-tab[hidden]:first-of-type + .tabbrowser-tab[hidden] ~ .tabbrowser-tab:not([hidden]) .tab-stack::before
-{
-    opacity: 0 !important;
-}
+    .tabbrowser-tab[usercontextid] .tab-stack::before,
+    .tabbrowser-tab[usercontextid] + .tabbrowser-tab:not([hidden]) .tab-stack::before,
+    .tabbrowser-tab[usercontextid] + .tabbrowser-tab[hidden] ~ .tabbrowser-tab:not([hidden]) .tab-stack::before
+    {
+        opacity: 0 !important;
+    }
 
-#tabbrowser-tabs[overflow] .tabbrowser-tab[first-visible-unpinned-tab] .tab-stack::before
-{
-    opacity: 0 !important;
+    .tabbrowser-tab:not([hidden]):first-of-type .tab-stack::before,
+    .tabbrowser-tab[hidden]:first-of-type + .tabbrowser-tab:not([hidden]) .tab-stack::before,
+    .tabbrowser-tab[hidden]:first-of-type + .tabbrowser-tab[hidden] ~ .tabbrowser-tab:not([hidden]) .tab-stack::before
+    {
+        opacity: 0 !important;
+    }
+
+    #tabbrowser-tabs[overflow] .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) .tab-stack::before
+    {
+        opacity: 0 !important;
+    }
+
+    @supports -moz-bool-pref("userChrome.TabSeparatorsLowSaturation-Enabled")
+    {
+        :root
+        {
+            --separators-color-saturation: 0.25;
+        }
+    }
+
+    @supports -moz-bool-pref("userChrome.TabSeparatorsMediumSaturation-Enabled")
+    {
+        :root
+        {
+            --separators-color-saturation: 0.5;
+        }
+    }
 }
 
 /*
@@ -1142,22 +1192,6 @@ spacer[part="overflow-end-indicator"]
        
 */
 
-@supports -moz-bool-pref("userChrome.TabSeparatorsLowSaturation-Enabled")
-{
-    :root
-    {
-        --separators-color-saturation: 0.25;
-    }
-}
-
-@supports -moz-bool-pref("userChrome.TabSeparatorsMediumSaturation-Enabled")
-{
-    :root
-    {
-        --separators-color-saturation: 0.5;
-    }
-}
-
 /* ---------------------------------------- Tab Scroll Animation ---------------------------------------- */
        
 #tabbrowser-tabs[overflow] .tabbrowser-tab:not([pinned])
@@ -1179,16 +1213,16 @@ spacer[part="overflow-end-indicator"]
     pointer-events: auto !important;
 }
 
-#tabbrowser-tabs[overflow]:not([movingtab]) .tabbrowser-tab[first-visible-unpinned-tab]
+#tabbrowser-tabs[overflow]:not([movingtab]) .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden]))
 {
-    margin-left: 0px !important;
+    margin-inline-start: 0px !important;
 }
 
 #tabbrowser-tabs[overflow]:not([movingtab]) .tabbrowser-tab:not([hidden]):last-of-type,
 #tabbrowser-tabs[overflow]:not([movingtab]) .tabbrowser-tab:not([hidden]):has(+ .tabbrowser-tab[hidden]:last-of-type),
 #tabbrowser-tabs[overflow]:not([movingtab]) .tabbrowser-tab:not([hidden]):has(+ .tabbrowser-tab[hidden] ~ .tabbrowser-tab[hidden]:last-of-type)
 {
-    margin-right: 0px !important;
+    margin-inline-end: 0px !important;
 }
 
 /* ---------------------------------------- Rounded Elements ---------------------------------------- */
@@ -1862,9 +1896,9 @@ spacer[part="overflow-end-indicator"]
         menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(2),
         menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(4),
         menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(5),
-        menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(6),
         menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(7),
         menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(8),
+        menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(9),
 
         /* ----- Searchbar Menu ----- */
 
@@ -1958,7 +1992,8 @@ spacer[part="overflow-end-indicator"]
         background-size: 20px;
         background-repeat: no-repeat;
         background-position: center;
-        margin: var(--align-menu-icons);
+        margin-block: -2px;
+        margin-inline: var(--align-menu-icons);
         fill: currentColor;
         -moz-context-properties: fill;
     }
@@ -2088,17 +2123,17 @@ spacer[part="overflow-end-indicator"]
         background-image: var(--copy);
     }
 
-    menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(6)::before
+    menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(7)::before
     {
         background-image: var(--clipboard-paste);
     }
 
-    menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(7)::before
+    menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(8)::before
     {
         background-image: var(--clipboard-search);
     }
 
-    menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(8)::before
+    menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(9)::before
     {
         background-image: var(--delete);
     }

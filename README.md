@@ -19,7 +19,7 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 
 ##### Minimum Requirements
 
-- Firefox 113
+- Firefox 115
 - Windows
 - MacOS
 - Linux
