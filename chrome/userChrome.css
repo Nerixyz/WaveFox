@@ -1,5 +1,4 @@
-@import "special/windows_11_10.css";
-@import "special/windows_8_7.css";
+@import "special/windows.css";
 @import "special/linux.css";
 @import "special/mac.css";
 
@@ -104,7 +103,7 @@
         --center-svg: url("special/tabs/option_8/center.svg");
         --right-svg:  url("special/tabs/option_8/right_corners.svg");
         
-        --tab-first-last-inline-margin: calc(var(--tab-min-height) / 2);
+        --tab-first-last-inline-margin: calc(var(--tab-min-height) / 2 - 6px);
     }
 }
 
@@ -483,60 +482,6 @@ and
     background-position: var(--tab-attention-indicator-position) !important;
 }
 
-/* ---------------------------------------- Toolbar Transparency ---------------------------------------- */
-
-@supports -moz-bool-pref("userChrome.Toolbar.Transparency.Low.Enabled")
-{
-    :root:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode])
-    {
-        --toolbar-bgcolor: color-mix(in srgb, -moz-Dialog 75%, transparent) !important;
-        --toolbar-field-background-color: color-mix(in srgb, Field 75%, transparent) !important;
-    }
-}
-
-@supports -moz-bool-pref("userChrome.Toolbar.Transparency.Medium.Enabled")
-{
-    :root:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode])
-    {
-        --toolbar-bgcolor: color-mix(in srgb, -moz-Dialog 50%, transparent) !important;
-        --toolbar-field-background-color: color-mix(in srgb, Field 50%, transparent) !important;
-    }
-}
-
-@supports -moz-bool-pref("userChrome.Toolbar.Transparency.High.Enabled")
-{
-    :root:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode])
-    {
-        --toolbar-bgcolor: color-mix(in srgb, -moz-Dialog 25%, transparent) !important;
-        --toolbar-field-background-color: color-mix(in srgb, Field 25%, transparent) !important;
-    }
-}
-
-@supports -moz-bool-pref("userChrome.Toolbar.Transparency.VeryHigh.Enabled")
-{
-    :root:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode])
-    {
-        --toolbar-bgcolor: transparent !important;
-        --toolbar-field-background-color: Field !important;
-    }
-       
-    :root:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]) .tabbrowser-tab[visuallyselected] .tab-background
-    {
-        --toolbar-bgcolor: Field !important;
-    }
-
-    :root:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]) #urlbar:not([focused], [open]) > #urlbar-background,
-    :root:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]) #searchbar:not(:focus-within)
-    {
-        box-shadow: var(--outer-box-shadow, none) !important;
-    }
-
-    :root:is(:not(:-moz-lwtheme), [lwt-default-theme-in-dark-mode]) #nav-bar::before
-    {
-        display: none !important;
-    }
-}
-
 /* ---------------------------------------- Main Window ---------------------------------------- */
 
 :root
@@ -569,12 +514,14 @@ and
 {
     :root
     {
-        --arrowpanel-menuitem-margin: 0 var(--browser-context-menu-margin-padding) !important;
-        --arrowpanel-menuitem-padding-block: var(--browser-context-menu-margin-padding) !important;
+        --arrowpanel-menuitem-margin-block:   0px !important;
+        --arrowpanel-menuitem-margin-inline:  var(--browser-context-menu-margin-padding) !important;
+        --arrowpanel-menuitem-padding-block:  var(--browser-context-menu-margin-padding) !important;
         --arrowpanel-menuitem-padding-inline: var(--browser-context-menu-margin-padding) !important;
-        --panel-separator-margin-vertical: var(--browser-context-menu-margin-padding) !important;
-        --panel-separator-margin-horizontal: var(--browser-context-menu-margin-padding) !important;
-        --panel-subview-body-padding: var(--browser-context-menu-margin-padding) 0 !important;
+        --panel-separator-margin-horizontal:  var(--browser-context-menu-margin-padding) !important;
+        --panel-separator-margin-vertical:    var(--browser-context-menu-margin-padding) !important;
+        --panel-subview-body-padding-block:   var(--browser-context-menu-margin-padding) !important;
+        --panel-subview-body-padding-inline:  0px !important;
     }
 }
 
@@ -600,6 +547,28 @@ and
     {
         --browser-context-menu-margin-padding: 8px;
     }
+}
+
+/* -------------------- Extensions menu -------------------- */
+
+#unified-extensions-panel
+{
+    --uei-icon-size: 24px !important;
+}
+
+#unified-extensions-panel .unified-extensions-item
+{
+    margin-block: 0px !important;
+}
+
+#unified-extensions-panel :is(
+                              .unified-extensions-item-name,
+                              .unified-extensions-item-message-deck > *
+                             )
+{
+    overflow: hidden !important;
+    white-space: nowrap !important;
+    text-overflow: ellipsis !important;
 }
 
 /* ---------------------------------------- Drag Space ---------------------------------------- */
@@ -670,28 +639,6 @@ spacer[part="overflow-end-indicator"]
 {
     color: inherit !important;
     --toolbarbutton-icon-fill: currentColor !important;
-}
-
-/* ---------------------------------------- Nav Bar ---------------------------------------- */
-
-#nav-bar
-{
-    position: relative !important;
-    overflow: visible !important;
-}
-
-#nav-bar::before
-{
-    content: "";
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0%;
-    left: 0%;
-    box-shadow: var(--outer-box-shadow, none);
-    pointer-events: none;
-    clip-path: inset(calc(-1 * var(--shadow-blur, 0px)) 0 0);
 }
 
 /* ---------------------------------------- Tabs ---------------------------------------- */
@@ -784,6 +731,11 @@ spacer[part="overflow-end-indicator"]
 {
     --toolbar-bgcolor: var(--warning-icon-bgcolor);
     background-color: var(--warning-icon-bgcolor) !important;
+}
+
+#tabbrowser-tabs[movingtab] .tabbrowser-tab:not([visuallyselected])
+{
+    z-index: auto !important;
 }
 
 .tabbrowser-tab:hover:not([visuallyselected], [multiselected]) .tab-background
@@ -977,34 +929,41 @@ spacer[part="overflow-end-indicator"]
 .tab-label-container
 {
     height: var(--tab-min-height) !important;
+    font-size: 12px !important;
 }
 
 .tab-label
 {
-    width: 100%;
-    height: 16px;
+    width: 100% !important;
+    height: 16px !important;
     line-height: 16px !important;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
     margin-block: 0px !important;
+}
+
+#tabbrowser-tabs[secondarytext-unsupported] .tab-label
+{
+    height: var(--tab-min-height) !important;
+    line-height: var(--tab-min-height) !important;
 }
 
 .tab-secondary-label
 {
-    width: 100%;
-    height: 16px;
-    line-height: 16px;
-    margin: 0px !important;
-    order: -1;
+    width: 100% !important;
+    height: 16px !important;
+    line-height: 16px !important;
+    margin-block: 0px !important;
+    order: -1 !important;
 }
 
 .tab-secondary-label > *
 {
-    width: 100%;
+    width: 100% !important;
     height: 16px !important;
-    line-height: 16px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    line-height: 16px !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
 }
 
 /* ---------------------------------------- Tab Bar ---------------------------------------- */
@@ -1012,6 +971,21 @@ spacer[part="overflow-end-indicator"]
 #TabsToolbar
 {
     --toolbarbutton-inner-padding: inherit !important;
+    position: relative !important;
+}
+
+#TabsToolbar::before
+{
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0px;
+    inset-inline-start: 0px;
+    box-shadow: var(--inner-box-shadow, none);
+    pointer-events: none;
+    z-index: 2;
 }
 
 #TabsToolbar #search-container
@@ -1250,248 +1224,6 @@ spacer[part="overflow-end-indicator"]
     #urlbar:not([open]) #urlbar-background, #searchbar
     {
         border-radius: 50px !important;
-    }
-}
-
-/* ---------------------------------------- One Line ---------------------------------------- */
-
-@supports -moz-bool-pref("userChrome.OneLine.NavBarWidth.Low.Enabled")
-{
-    :root
-    {
-        --navbar-width: 20%;
-    }
-}
-
-@supports -moz-bool-pref("userChrome.OneLine.NavBarWidth.Medium.Enabled")
-{
-    :root
-    {
-        --navbar-width: 30%;
-    }
-}
-
-@supports -moz-bool-pref("userChrome.OneLine.NavBarWidth.High.Enabled")
-{
-    :root
-    {
-        --navbar-width: 40%;
-    }
-}
-
-@supports -moz-bool-pref("userChrome.OneLine.TabBarFirst.Enabled")
-{
-    #navigator-toolbox
-    {
-        grid-template-columns: auto var(--navbar-width, 50%) !important;
-    }
-
-    #titlebar
-    {
-        grid-area: 1 / 1 / span 1 / span 1 !important;
-    }
-}
-
-@supports -moz-bool-pref("userChrome.OneLine.NavBarFirst.Enabled")
-{
-    #navigator-toolbox
-    {
-        grid-template-columns: var(--navbar-width, 50%) auto !important;
-    }
-
-    #nav-bar
-    {
-        grid-area: 1 / 1 / span 1 / span 1 !important;
-    }
-}
-
-@supports -moz-bool-pref("userChrome.OneLine.TabBarFirst.Enabled") or
-          -moz-bool-pref("userChrome.OneLine.NavBarFirst.Enabled")
-{
-    #navigator-toolbox
-    {
-        display: grid !important;
-        align-items: end !important;
-    }
-
-    /* -------------------- Nav Bar -------------------- */
-
-    #urlbar-container,
-    #search-container
-    {
-        flex-shrink: 1 !important;
-        padding-block: 0px !important;
-    }
-
-    #urlbar-container
-    {
-        --urlbar-container-height: var(--tab-min-height) !important;
-    }
-
-    #urlbar
-    {
-        --urlbar-toolbar-height: var(--tab-min-height) !important;
-    }
-
-    @supports -moz-bool-pref("userChrome.Tabs.Option6.Enabled") or
-              -moz-bool-pref("userChrome.Tabs.Option10.Enabled")
-    {
-        #nav-bar
-        {
-            z-index: 1 !important;
-        }
-
-        #nav-bar::before
-        {
-            clip-path: inset(0 calc(-1 * var(--shadow-blur, 0px)));
-        }
-    }
-
-    /* -------------------- Bookmarks Bar -------------------- */
-
-    #PersonalToolbar
-    {
-        position: relative !important;
-        overflow: visible !important;
-    }
-
-    #PersonalToolbar::before
-    {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0%;
-        left: 0%;
-        box-shadow: var(--outer-box-shadow, none);
-        pointer-events: none;
-        clip-path: inset(calc(-1 * var(--shadow-blur, 0px)) 0 0);
-    }
-
-    /* -------------------- Bookmarks Bar / Notifications -------------------- */
-    
-    #navigator-toolbox > *:not(#titlebar, #nav-bar)
-    {
-        grid-column: 1 / span 2 !important;
-    }
-
-    /* ----------------------------------------------------------------------- */
-    @supports not (-moz-bool-pref("userChrome.Tabs.Option6.Enabled") or
-                   -moz-bool-pref("userChrome.Tabs.Option10.Enabled"))
-    {
-        #navigator-toolbox
-        {
-            -moz-window-dragging: drag !important;
-        }
-
-        /* -------------------- Tab Bar -------------------- */
-
-        @supports not (
-                       -moz-bool-pref("userChrome.Tabs.Option1.Enabled") or
-                       -moz-bool-pref("userChrome.Tabs.Option2.Enabled") or
-                       -moz-bool-pref("userChrome.Tabs.Option3.Enabled") or
-                       -moz-bool-pref("userChrome.Tabs.Option4.Enabled") or
-                       -moz-bool-pref("userChrome.Tabs.Option5.Enabled")
-                      )
-        {
-            :root
-            {
-                --my-tab-min-height: calc(var(--tab-min-height) + var(--tab-block-margin) * 2);
-            }
-
-            #tabbrowser-tabs
-            {
-                --tab-min-height: var(--my-tab-min-height) !important;
-            }
-        }
-
-        /* -------------------- Nav Bar -------------------- */
-
-        #nav-bar
-        {
-            margin: var(--tab-block-margin) !important;
-            border-radius: var(--tab-border-radius) !important;
-            box-shadow: var(--outer-box-shadow, none) !important;
-        }
-
-        #nav-bar::before
-        {
-            display: none !important;
-        }
-    }
-}
-
-/* ---------------------------------------- Tabs On Bottom ---------------------------------------- */
-
-@supports -moz-bool-pref("userChrome.TabsOnBottom-Enabled")
-{
-    #navigator-toolbox
-    {
-        display: flex !important;
-        flex-direction: column !important;
-        flex-wrap: nowrap !important;
-    }
-
-    /* -------------------- Title Bar -------------------- */
-
-    #titlebar
-    {
-        order: 1 !important;
-    }
-
-    #toolbar-menubar
-    {
-        background-color: var(--toolbar-bgcolor) !important;
-        color: var(--toolbar-color) !important;
-        appearance: none !important;
-    }
-
-    /* -------------------- Nav Bar -------------------- */
-
-    #nav-bar::before
-    {
-        transform: rotateX(180deg);
-    }
-
-    /* -------------------- Menu Bar / Bookmarks Bar -------------------- */
-
-    #toolbar-menubar
-    {
-        position: relative !important;
-    }
-
-    #PersonalToolbar
-    {
-        position: relative !important;
-        overflow: visible !important;
-    }
-
-    #toolbar-menubar::before,
-    #PersonalToolbar::before
-    {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        top: 0%;
-        left: 0%;
-        box-shadow: var(--outer-box-shadow, none);
-        pointer-events: none;
-        clip-path: inset(0 0 calc(-1 * var(--shadow-blur, 0px)));
-    }
-
-    /* -------------------- Tabs -------------------- */
-
-    .tabbrowser-tab
-    {
-        --tab-inset-clip-path: 0px calc(-1 * var(--tab-first-last-inline-margin));
-    }
-
-    .tab-background
-    {
-        transform: rotateX(180deg);
     }
 }
 

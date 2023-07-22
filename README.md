@@ -19,13 +19,24 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 
 ##### Minimum Requirements
 
-- Firefox 115
+- Firefox 116
+- Firefox 115 ESR
 - Windows
 - MacOS
 - Linux
 
+###### Have a question not related to this project? These resources will help you
+
+- [Mozilla support](https://support.mozilla.org/en-US/)
+- [Reddit (New)](https://www.reddit.com/r/MozillaFirefox)
+- [Reddit (Old / Read only)](https://www.reddit.com/r/firefox)
+- [Fedia](https://www.fedia.io/m/firefox)
+- [Reddit (CSS)](https://www.reddit.com/r/FirefoxCSS)
+- [Fedia (CSS)](https://www.fedia.io/m/FirefoxCSS)
+
 ##### Installation
 
+- [Download Firefox](https://www.mozilla.org/en-US/firefox/all/#product-desktop-release) / [Download WaveFox](https://github.com/QNetITQ/WaveFox/releases)
 - Download the `chrome` folder and put it in your user profile folder. For convenience, use `about:profiles`
 - Go to `about:config` and activate the keys below
 
@@ -116,34 +127,6 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
   - `userChrome.Tabs.Option12.Enabled`
 
 ## Optional
-
-### Windows System Effects
-
-Works with modern versions of Windows 11 / Windows 10. System effects must be supported on the operating system side. Otherwise, you need third-party software, such as Mica For Everyone. You also need to disable the accent color in the operating system settings, if it was enabled. Works only with the system theme.
-![изображение](https://user-images.githubusercontent.com/85301851/160720915-a055134a-357c-44cc-a638-8dd56e869111.png)
-
-Download and install Mica For Everyone from [here](https://github.com/minusium/MicaForEveryone/releases).
-
-- `userChrome.Windows.SystemEffects.Enabled`
-
-### Toolbar Transparency
-
-Works only with the system theme.
-![изображение](https://user-images.githubusercontent.com/85301851/165526704-4f7486c4-f330-4c86-a25d-6ed8ab2affe4.png)
-
-- `userChrome.Toolbar.Transparency.Low.Enabled`
-- `userChrome.Toolbar.Transparency.Medium.Enabled`
-- `userChrome.Toolbar.Transparency.High.Enabled`
-- `userChrome.Toolbar.Transparency.VeryHigh.Enabled`
-
-### Linux Transparency
-
-Requires Linux with transparency support. Tested on Linux Manjaro KDE + ForceBlur. Transparency is active for all modes, but does not work everywhere. This may change with future browser updates. Works only with the system theme.
-
-![изображение](https://user-images.githubusercontent.com/85301851/173119832-e82bc2f7-eda7-4167-9dcd-ccca50383816.png)
-
-- `userChrome.Linux.Transparency.Enabled`
-- `gfx.webrender.all` (Required key)
 
 ### Tab Frame
 
@@ -240,24 +223,3 @@ By default context menus follow the selected interface density, but it is possib
 ![изображение](https://github.com/QNetITQ/WaveFox/assets/85301851/c5b7c4b8-81d2-4ca2-9944-574af7e88f1d)
 
 - `userChrome.Tabs.SelectedTabIndicator.Enabled`
-
-### One Line
-
-![Снимок](https://user-images.githubusercontent.com/85301851/181300272-d1ecfc93-898a-4eb3-80b9-9974fc471b45.PNG)
-
-- `userChrome.OneLine.TabBarFirst.Enabled`
-- `userChrome.OneLine.NavBarFirst.Enabled`
-- `browser.tabs.inTitlebar` (Enable this key if there are problems with window control buttons. Set the value to 0)
-
-Low values are more suitable for high resolution monitors.
-
-- `userChrome.OneLine.NavBarWidth.Low.Enabled`
-- `userChrome.OneLine.NavBarWidth.Medium.Enabled`
-- `userChrome.OneLine.NavBarWidth.High.Enabled`
-
-### Tabs On Bottom
-
-![изображение](https://user-images.githubusercontent.com/85301851/182421633-3ec6948a-85cb-47ac-8b6d-6e92293e4ca3.png)
-
-- `userChrome.TabsOnBottom-Enabled`
-- `browser.tabs.inTitlebar` (Required key. Set the value to 0)
