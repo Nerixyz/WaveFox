@@ -18,8 +18,7 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 ---
 
 ##### Minimum Requirements
-
-- Firefox 116
+- Firefox 117
 - Firefox 115 ESR
 - Windows
 - MacOS
@@ -29,29 +28,43 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 
 - [Mozilla support](https://support.mozilla.org/en-US/)
 - [Reddit (New)](https://www.reddit.com/r/MozillaFirefox)
-- [Reddit (Old / Read only)](https://www.reddit.com/r/firefox)
+- [Reddit (Old / Restricted?)](https://www.reddit.com/r/firefox)
 - [Fedia](https://www.fedia.io/m/firefox)
 - [Reddit (CSS)](https://www.reddit.com/r/FirefoxCSS)
-- [Fedia (CSS)](https://www.fedia.io/m/FirefoxCSS)
 
-##### Installation
+## Attention!
+- Do not use the Beta version of the style as it may be unstable
+- There are 3 styles available - Beta, Regular and ESR. ESR style is for Firefox 115 ESR only. The Regular style is for the specified browser version, but generally works with newer versions as well. Beta style is only for a future version of the browser.
+- The ESR style is updated only when needed. The regular style is updated once a month. Updates contain various fixes, compatibility with the new version of the browser, removal of obsolete code and the addition of new options
+- The installation steps and available options are different for each style
+- All the necessary information is in the [releases section](https://github.com/QNetITQ/WaveFox/releases)
+
+## Installation
 
 - [Download Firefox](https://www.mozilla.org/en-US/firefox/all/#product-desktop-release) / [Download WaveFox](https://github.com/QNetITQ/WaveFox/releases)
-- Download the `chrome` folder and put it in your user profile folder. For convenience, use `about:profiles`
+
+- Download the `chrome` folder and put it in your user profile folder
+
+  <details>
+  <summary>How to access user profile folder?</summary>
+
+  ![Profile](https://github.com/QNetITQ/WaveFox/assets/85301851/d2b893ea-a62e-4d96-9385-108f83025075)
+  ![Profile 2](https://github.com/QNetITQ/WaveFox/assets/85301851/2817ee70-793b-40e6-a77e-8e62f9bfa87e)
+
+  </details>
+  
 - Go to `about:config` and activate the keys below
 
   - `toolkit.legacyUserProfileCustomizations.stylesheets`
   - `layout.css.has-selector.enabled`
-  - `svg.context-properties.content.enabled` (Activate this key if the menu icons don't follow the general design color. Previously seen only on MacOS)
-
-- Specify the desired shape of the tabs.
+  
+- Specify the desired shape of the tabs and restart the browser
 
   <details>
-  <summary>Creation of keys</summary>
-  Restart your browser for the changes to take effect.
+  <summary>How to create keys?</summary>
 
-  ![изображение](https://user-images.githubusercontent.com/85301851/180253017-22325fad-2f53-47f5-b409-618ca7fe6084.png)
-  ![изображение](https://user-images.githubusercontent.com/85301851/180253209-3e6965a9-641a-4ac2-bf3d-242ac8b3451c.png)
+  ![Keys](https://github.com/QNetITQ/WaveFox/assets/85301851/9a3673d1-0d95-49fd-911c-dc91b366bc8b)
+
   </details>
 
   ##### Tabs (Option 1)
@@ -128,9 +141,33 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 
 ## Optional
 
-### Tab Frame
+### Accent Color / Windows 11 / Windows 10
+![изображение](https://github.com/QNetITQ/WaveFox/assets/85301851/55b01904-6620-4e36-9b6d-91b092db725c)
 
-The tab frame consists of type, color and saturation. Not compatible with themes that use a translucent toolbar.
+- `widget.windows.titlebar-accent.enabled`
+
+### Linux Transparency
+Requires Linux with transparency support. Tested on Manjaro KDE + [ForceBlur](https://github.com/esjeon/kwin-forceblur). Works only with the system theme.
+
+![Снимок5](https://github.com/QNetITQ/WaveFox/assets/85301851/3b4dcfc8-217d-48a1-aba7-1621f9375f67)
+
+- `userChrome.Linux.Transparency.Low.Enabled`
+- `userChrome.Linux.Transparency.Medium.Enabled`
+- `userChrome.Linux.Transparency.High.Enabled`
+- `userChrome.Linux.Transparency.VeryHigh.Enabled`
+- `gfx.webrender.all` (Required key)
+
+### Toolbar Transparency
+Works only with the system theme.
+![изображение](https://user-images.githubusercontent.com/85301851/165526704-4f7486c4-f330-4c86-a25d-6ed8ab2affe4.png)
+
+- `userChrome.Toolbar.Transparency.Low.Enabled`
+- `userChrome.Toolbar.Transparency.Medium.Enabled`
+- `userChrome.Toolbar.Transparency.High.Enabled`
+- `userChrome.Toolbar.Transparency.VeryHigh.Enabled`
+
+### Tab Frame
+The tab frame consists of type, color and saturation.
 ![изображение](https://user-images.githubusercontent.com/85301851/152011749-4d5619b3-0fd8-40f9-a3dc-96be31839971.png)
 
 ##### Light Theme
@@ -141,8 +178,6 @@ The tab frame consists of type, color and saturation. Not compatible with themes
 - `userChrome.LightTheme.TabFrameType.Shadow.Enabled`
 
 ###### Color
-
-- `userChrome.LightTheme.TabFrameColor.Auto.Enabled`
 - `userChrome.LightTheme.TabFrameColor.White.Enabled`
 - `userChrome.LightTheme.TabFrameColor.Black.Enabled`
 
@@ -161,8 +196,6 @@ The tab frame consists of type, color and saturation. Not compatible with themes
 - `userChrome.DarkTheme.TabFrameType.Shadow.Enabled`
 
 ###### Color
-
-- `userChrome.DarkTheme.TabFrameColor.Auto.Enabled`
 - `userChrome.DarkTheme.TabFrameColor.White.Enabled`
 - `userChrome.DarkTheme.TabFrameColor.Black.Enabled`
 
@@ -200,6 +233,7 @@ By default context menus follow the selected interface density, but it is possib
 
 - `userChrome.RegularMenuIcons-Enabled`
 - `userChrome.FilledMenuIcons-Enabled`
+- `svg.context-properties.content.enabled` (Required key)
 
 ### Drag Space
 
@@ -223,3 +257,22 @@ By default context menus follow the selected interface density, but it is possib
 ![изображение](https://github.com/QNetITQ/WaveFox/assets/85301851/c5b7c4b8-81d2-4ca2-9944-574af7e88f1d)
 
 - `userChrome.Tabs.SelectedTabIndicator.Enabled`
+
+### Tabs On Bottom
+![Снимок](https://github.com/QNetITQ/WaveFox/assets/85301851/514cf30d-a417-48cb-bfd1-0e77c9df1bf4)
+
+- `userChrome.Tabs.TabsOnBottom.Enabled`
+- `browser.tabs.inTitlebar` (Required key. Set the value to 0)
+
+### One Line
+![Снимок](https://github.com/QNetITQ/WaveFox/assets/85301851/05bba314-643d-46f3-a09c-b3ac31f9761d)
+
+- `userChrome.OneLine.TabBarFirst.Enabled`
+- `userChrome.OneLine.NavBarFirst.Enabled`
+- `browser.tabs.inTitlebar` (Enable this key if there are problems with window control buttons. Set the value to 0)
+- `svg.context-properties.content.enabled` (Required key)
+
+Low values are better for ultra widescreen monitors
+- `userChrome.OneLine.NavBarWidth.Low.Enabled`
+- `userChrome.OneLine.NavBarWidth.Medium.Enabled`
+- `userChrome.OneLine.NavBarWidth.High.Enabled`
