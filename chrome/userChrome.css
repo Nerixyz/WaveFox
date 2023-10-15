@@ -386,6 +386,44 @@ and
     }
 }
 
+/* ---------------------------------------- System Theme ---------------------------------------- */
+
+@media not (prefers-contrast)
+{
+    :root:not(:-moz-lwtheme)
+    {
+        .tabbrowser-tab[visuallyselected]
+        {
+            color: var(--toolbar-color) !important;
+
+            .tab-background
+            {
+                background-color: var(--toolbar-bgcolor) !important;
+            }
+        }
+
+        &[tabsintitlebar] .titlebar-color
+        {
+            color: inherit !important;
+            --toolbarbutton-icon-fill: currentColor !important;
+            --toolbarbutton-hover-background: color-mix(in srgb, currentColor 10%, transparent) !important;
+            --toolbarbutton-active-background: color-mix(in srgb, currentColor 20%, transparent) !important;
+        }
+    }
+}
+
+/* ---------------------------------------- Light Theme / Dark Theme ---------------------------------------- */
+
+:root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26)"] .tabbrowser-tab[visuallyselected] .tab-background
+{
+    --tab-selected-bgcolor: initial;
+}
+
+:root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254)"] .tabbrowser-tab[visuallyselected] .tab-background
+{
+    --lwt-selected-tab-background-color: initial;
+}
+
 /* ---------------------------------------- Pinned Tabs Width ---------------------------------------- */
 
 @supports -moz-bool-pref("userChrome.PinnedTabsWidthLowIncrease-Enabled")
@@ -437,12 +475,16 @@ and
           -moz-bool-pref("userChrome.Toolbar.Transparency.Medium.Enabled") or
           -moz-bool-pref("userChrome.Toolbar.Transparency.High.Enabled")
 {
-    :root:not(:-moz-lwtheme)
+    :root[tabsintitlebar]:not(:-moz-lwtheme)
     {
         --toolbar-bgcolor: color-mix(in srgb, -moz-Dialog, transparent var(--toolbar-transparency)) !important;
         --toolbar-field-background-color: color-mix(in srgb, Field, transparent var(--toolbar-transparency)) !important;
         --outer-drop-shadow: none !important;
         --inner-box-shadow: none !important;
+        --toolbarbutton-hover-background: color-mix(in srgb, currentColor 10%, transparent) !important;
+        --toolbarbutton-active-background: color-mix(in srgb, currentColor 20%, transparent) !important;
+        --urlbar-box-hover-bgcolor: color-mix(in srgb, currentColor 10%, transparent) !important;
+        --urlbar-box-active-bgcolor: color-mix(in srgb, currentColor 20%, transparent) !important;
 
         @supports -moz-bool-pref("userChrome.Toolbar.Transparency.Low.Enabled")
         {
@@ -463,10 +505,12 @@ and
 
 @supports -moz-bool-pref("userChrome.Toolbar.Transparency.VeryHigh.Enabled")
 {
-    :root:not(:-moz-lwtheme)
+    :root[tabsintitlebar]:not(:-moz-lwtheme)
     {
         --toolbar-bgcolor: transparent !important;
         --toolbar-field-background-color: Field !important;
+        --toolbarbutton-hover-background: color-mix(in srgb, currentColor 10%, transparent) !important;
+        --toolbarbutton-active-background: color-mix(in srgb, currentColor 20%, transparent) !important;
 
         .tabbrowser-tab[visuallyselected] .tab-background
         {
@@ -490,14 +534,8 @@ and
 
 :root
 {
-    --tab-selected-bgcolor: initial !important;
-    --lwt-selected-tab-background-color: initial !important;
     --tab-shadow-max-size: 0px !important;
     --tabs-navbar-shadow-size: 0px !important;
-    --button-hover-bgcolor: color-mix(in srgb, currentColor 10%, transparent) !important;
-    --button-active-bgcolor: color-mix(in srgb, currentColor 20%, transparent) !important;
-    --toolbarbutton-hover-background: var(--button-hover-bgcolor) !important;
-    --toolbarbutton-active-background: var(--button-active-bgcolor) !important;
 }
 
 /* ---------------------------------------- Density ---------------------------------------- */
@@ -653,7 +691,6 @@ spacer[part="overflow-end-indicator"]
     &[visuallyselected]
     {
         position: relative;
-        color: var(--toolbar-color) !important;
         z-index: 2 !important;
         filter: var(--outer-drop-shadow, none);
     }
@@ -701,6 +738,16 @@ spacer[part="overflow-end-indicator"]
     z-index: auto !important;
 }
 
+.tabbrowser-tab[pending] .tab-icon-image
+{
+    opacity: 0.5 !important;
+}
+
+.tab-content
+{
+    padding-inline: calc((var(--tab-min-height) - 16px) / 2 + var(--pinned-tabs-width-offset, 0px)) !important;
+}
+
 .tab-close-button
 {
     width: 16px !important;
@@ -710,14 +757,14 @@ spacer[part="overflow-end-indicator"]
     margin: 0px !important;
 }
 
-.tab-content
+.tab-close-button:hover
 {
-    padding-inline: calc((var(--tab-min-height) - 16px) / 2 + var(--pinned-tabs-width-offset, 0px)) !important;
+    background-color: var(--toolbarbutton-hover-background) !important;
 }
 
-.tabbrowser-tab[pending] .tab-content
+.tab-close-button:hover:active
 {
-    opacity: 0.5 !important;
+    background-color: var(--toolbarbutton-active-background) !important;
 }
 
 /* -------------------- Selected Tab Indicator -------------------- */
@@ -1393,15 +1440,15 @@ spacer[part="overflow-end-indicator"]
 
 /* ---------------------------------------- Rounded Elements ---------------------------------------- */
 
-@supports -moz-bool-pref("userChrome.Tabs.Option5.Enabled")  or
+@supports -moz-bool-pref("userChrome.Tabs.Option3.Enabled")  or
+          -moz-bool-pref("userChrome.Tabs.Option4.Enabled")  or
+          -moz-bool-pref("userChrome.Tabs.Option5.Enabled")  or
           -moz-bool-pref("userChrome.Tabs.Option8.Enabled")  or
           -moz-bool-pref("userChrome.Tabs.Option9.Enabled")  or
           -moz-bool-pref("userChrome.Tabs.Option11.Enabled") or
           -moz-bool-pref("userChrome.Tabs.Option12.Enabled")
 {
-    #TabsToolbar :is(#tabs-newtab-button > .toolbarbutton-icon,
-                     #new-tab-button > .toolbarbutton-icon,
-                     #alltabs-button > .toolbarbutton-badge-stack)
+    #tabs-newtab-button > .toolbarbutton-icon
     {
         border-radius: 50% !important;
     }

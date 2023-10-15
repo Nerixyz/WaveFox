@@ -18,7 +18,7 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 ---
 
 ##### Minimum Requirements
-- Firefox 117
+- Firefox 119
 - Firefox 115 ESR
 - Windows
 - MacOS
@@ -57,6 +57,7 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 
   - `toolkit.legacyUserProfileCustomizations.stylesheets`
   - `layout.css.has-selector.enabled`
+  - `svg.context-properties.content.enabled`
   
 - Specify the desired shape of the tabs and restart the browser
 
