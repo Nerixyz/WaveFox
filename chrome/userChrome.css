@@ -4,6 +4,8 @@
 @import "special/linux.css"   layer(HighPriority) (-moz-platform: linux);
 @import "special/mac.css"     layer(HighPriority) (-moz-platform: macos);
 
+@import "special/nerixAdjustments.css" layer(HighPriority);
+
 @layer LowPriority
 {
 
