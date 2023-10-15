@@ -28,13 +28,10 @@ toolbarbutton.bookmark-item:not(.subviewbutton) {
 /* flash fix */
 
 browser,
+.browserContainer,
 browser.display.background_color,
-tabbrowser tabpanels {
-  background-color: #121212 !important;
-}
-
-/* white flash fix */
+tabbrowser tabpanels,
 browser[type='content-primary'],
 browser[type='content'] {
-  background: #121212 !important;
+  background-color: #121212 !important;
 }
