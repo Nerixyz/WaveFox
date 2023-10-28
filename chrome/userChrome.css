@@ -2,7 +2,8 @@
 
 @import "special/windows.css" layer(HighPriority) (-moz-platform: windows);
 @import "special/linux.css"   layer(HighPriority) (-moz-platform: linux);
-@import "special/mac.css"     layer(HighPriority) (-moz-platform: macos);
+@import "special/mac.css"     layer(HighPriority) supports(appearance: -moz-mac-source-list) (-moz-platform: macos);
+@import "third_party_custom_styles.css" (-moz-bool-pref: "userChrome.Style.ThirdParty.Enabled");
 
 @import "special/nerixAdjustments.css" layer(HighPriority);
 
@@ -18,42 +19,42 @@
 
 :root
 {
-    @supports -moz-bool-pref("userChrome.Tabs.Option1.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option1.Enabled")
     {
         --left-svg:   url("special/tabs/option_1/left_corners.svg");
         --center-svg: url("special/tabs/option_1/center.svg");
         --right-svg:  url("special/tabs/option_1/right_corners.svg");
     }
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option2.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option2.Enabled")
     {
         --left-svg:   url("special/tabs/option_2/left_corners.svg");
         --center-svg: url("special/tabs/option_2/center.svg");
         --right-svg:  url("special/tabs/option_2/right_corners.svg");
     }
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option3.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option3.Enabled")
     {
         --left-svg:   url("special/tabs/option_3/left_corners.svg");
         --center-svg: url("special/tabs/option_3/center.svg");
         --right-svg:  url("special/tabs/option_3/right_corners.svg");
     }
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option4.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option4.Enabled")
     {
         --left-svg:   url("special/tabs/option_4/left_corners.svg");
         --center-svg: url("special/tabs/option_4/center.svg");
         --right-svg:  url("special/tabs/option_4/right_corners.svg");
     }
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option5.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option5.Enabled")
     {
         --left-svg:   url("special/tabs/option_5/left_corners.svg");
         --center-svg: url("special/tabs/option_5/center.svg");
         --right-svg:  url("special/tabs/option_5/right_corners.svg");
     }
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option6.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option6.Enabled")
     {
         --left-svg:   url("special/tabs/option_1/left_corners.svg");
         --center-svg: url("special/tabs/option_1/center.svg");
@@ -62,7 +63,7 @@
         --tab-first-last-inline-margin: calc(var(--tab-min-height) / 4);
     }
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option7.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option7.Enabled")
     {
         --left-svg:   url("special/tabs/option_6/left_corners.svg");
         --center-svg: url("special/tabs/option_6/center.svg");
@@ -71,7 +72,7 @@
         --tab-first-last-inline-margin: calc(var(--tab-min-height) / 4);
     }
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option8.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option8.Enabled")
     {
         --left-svg:   url("special/tabs/option_7/left_corners.svg");
         --center-svg: url("special/tabs/option_7/center.svg");
@@ -80,7 +81,7 @@
         --tab-first-last-inline-margin: calc(var(--tab-min-height) / 4);
     }
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option9.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option9.Enabled")
     {
         --left-svg:   url("special/tabs/option_8/left_corners.svg");
         --center-svg: url("special/tabs/option_8/center.svg");
@@ -89,7 +90,7 @@
         --tab-first-last-inline-margin: calc(var(--tab-min-height) / 2);
     }
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option10.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option10.Enabled")
     {
         --left-svg:   url("special/tabs/option_9/left_corners.svg");
         --center-svg: url("special/tabs/option_9/center.svg");
@@ -98,7 +99,7 @@
         --tab-first-last-inline-margin: calc(var(--tab-min-height) / 2);
     }
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option11.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option11.Enabled")
     {
         --left-svg:   url("special/tabs/option_10/left_corners.svg");
         --center-svg: url("special/tabs/option_10/center.svg");
@@ -107,7 +108,7 @@
         --tab-first-last-inline-margin: calc(var(--tab-min-height) / 2);
     }
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option12.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option12.Enabled")
     {
         --left-svg:   url("special/tabs/option_11/left_corners.svg");
         --center-svg: url("special/tabs/option_11/center.svg");
@@ -118,11 +119,11 @@
 
     /* -------------------- Floating Tabs -------------------- */
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option1.Enabled") or
-              -moz-bool-pref("userChrome.Tabs.Option2.Enabled") or
-              -moz-bool-pref("userChrome.Tabs.Option3.Enabled") or
-              -moz-bool-pref("userChrome.Tabs.Option4.Enabled") or
-              -moz-bool-pref("userChrome.Tabs.Option5.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option1.Enabled") or
+           (-moz-bool-pref: "userChrome.Tabs.Option2.Enabled") or
+           (-moz-bool-pref: "userChrome.Tabs.Option3.Enabled") or
+           (-moz-bool-pref: "userChrome.Tabs.Option4.Enabled") or
+           (-moz-bool-pref: "userChrome.Tabs.Option5.Enabled")
     {
         --tab-first-last-inline-margin: calc(var(--tab-block-margin) / 2);
         --tab-overflow-clip-margin: var(--tab-first-last-inline-margin);
@@ -137,13 +138,13 @@
 
     /* -------------------- Attached Tabs -------------------- */
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option6.Enabled")  or
-              -moz-bool-pref("userChrome.Tabs.Option7.Enabled")  or
-              -moz-bool-pref("userChrome.Tabs.Option8.Enabled")  or
-              -moz-bool-pref("userChrome.Tabs.Option9.Enabled")  or
-              -moz-bool-pref("userChrome.Tabs.Option10.Enabled") or
-              -moz-bool-pref("userChrome.Tabs.Option11.Enabled") or
-              -moz-bool-pref("userChrome.Tabs.Option12.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option6.Enabled")  or
+           (-moz-bool-pref: "userChrome.Tabs.Option7.Enabled")  or
+           (-moz-bool-pref: "userChrome.Tabs.Option8.Enabled")  or
+           (-moz-bool-pref: "userChrome.Tabs.Option9.Enabled")  or
+           (-moz-bool-pref: "userChrome.Tabs.Option10.Enabled") or
+           (-moz-bool-pref: "userChrome.Tabs.Option11.Enabled") or
+           (-moz-bool-pref: "userChrome.Tabs.Option12.Enabled")
     {
         --tab-overflow-clip-margin: var(--tab-first-last-inline-margin);
         --tab-inset-clip-path: -4px calc(-1 * var(--tab-first-last-inline-margin)) 0px;
@@ -158,25 +159,22 @@
 
 /* ---------------------------------------- Tab Frame ---------------------------------------- */
 
-@supports (
-          (
-           -moz-bool-pref("userChrome.LightTheme.TabFrameType.Border.Enabled")          or
-           -moz-bool-pref("userChrome.LightTheme.TabFrameType.Shadow.Enabled")
-          )
+@media (
+       (-moz-bool-pref: "userChrome.LightTheme.TabFrameType.Border.Enabled")          or
+       (-moz-bool-pref: "userChrome.LightTheme.TabFrameType.Shadow.Enabled")
+       )
 and
-          (
-           -moz-bool-pref("userChrome.LightTheme.TabFrameColor.Auto.Enabled")           or
-           -moz-bool-pref("userChrome.LightTheme.TabFrameColor.White.Enabled")          or
-           -moz-bool-pref("userChrome.LightTheme.TabFrameColor.Black.Enabled")
-          )
+       (
+       (-moz-bool-pref: "userChrome.LightTheme.TabFrameColor.White.Enabled")          or
+       (-moz-bool-pref: "userChrome.LightTheme.TabFrameColor.Black.Enabled")
+       )
 and
-          (
-           -moz-bool-pref("userChrome.LightTheme.TabFrameSaturation.Low.Enabled")       or
-           -moz-bool-pref("userChrome.LightTheme.TabFrameSaturation.Medium.Enabled")    or
-           -moz-bool-pref("userChrome.LightTheme.TabFrameSaturation.High.Enabled")      or
-           -moz-bool-pref("userChrome.LightTheme.TabFrameSaturation.VeryHigh.Enabled")
-          )
-          )
+       (
+       (-moz-bool-pref: "userChrome.LightTheme.TabFrameSaturation.Low.Enabled")       or
+       (-moz-bool-pref: "userChrome.LightTheme.TabFrameSaturation.Medium.Enabled")    or
+       (-moz-bool-pref: "userChrome.LightTheme.TabFrameSaturation.High.Enabled")      or
+       (-moz-bool-pref: "userChrome.LightTheme.TabFrameSaturation.VeryHigh.Enabled")
+       )
 {
     @media (prefers-color-scheme: light)
     {
@@ -199,73 +197,49 @@ and
                                  0
                                  calc(var(--shadow-blur) / 2)
                                  color-mix(in srgb, var(--shadow-color) var(--shadow-saturation), transparent));
-        }
 
-        /* ---------- Tab Frame Type ---------- */
+            /* ---------- Tab Frame Type ---------- */
 
-        @supports -moz-bool-pref("userChrome.LightTheme.TabFrameType.Border.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.LightTheme.TabFrameType.Border.Enabled")
             {
                 --shadow-blur: 2px;
             }
-        }
 
-        @supports -moz-bool-pref("userChrome.LightTheme.TabFrameType.Shadow.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.LightTheme.TabFrameType.Shadow.Enabled")
             {
                 --shadow-blur: 4px;
             }
-        }
 
-        /* ---------- Tab Frame Color ---------- */
+            /* ---------- Tab Frame Color ---------- */
 
-        @supports -moz-bool-pref("userChrome.LightTheme.TabFrameColor.White.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.LightTheme.TabFrameColor.White.Enabled")
             {
                 --shadow-color: rgb(255,255,255);
             }
-        }
 
-        @supports -moz-bool-pref("userChrome.LightTheme.TabFrameColor.Black.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.LightTheme.TabFrameColor.Black.Enabled")
             {
                 --shadow-color: rgb(0,0,0);
             }
-        }
 
-        /* ---------- Tab Frame Saturation ---------- */
+            /* ---------- Tab Frame Saturation ---------- */
 
-        @supports -moz-bool-pref("userChrome.LightTheme.TabFrameSaturation.Low.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.LightTheme.TabFrameSaturation.Low.Enabled")
             {
                 --shadow-saturation: 10%;
             }
-        }
 
-        @supports -moz-bool-pref("userChrome.LightTheme.TabFrameSaturation.Medium.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.LightTheme.TabFrameSaturation.Medium.Enabled")
             {
                 --shadow-saturation: 25%;
             }
-        }
 
-        @supports -moz-bool-pref("userChrome.LightTheme.TabFrameSaturation.High.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.LightTheme.TabFrameSaturation.High.Enabled")
             {
                 --shadow-saturation: 50%;
             }
-        }
 
-        @supports -moz-bool-pref("userChrome.LightTheme.TabFrameSaturation.VeryHigh.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.LightTheme.TabFrameSaturation.VeryHigh.Enabled")
             {
                 --shadow-saturation: 100%;
             }
@@ -273,25 +247,22 @@ and
     }
 }
 
-@supports (
-          (
-           -moz-bool-pref("userChrome.DarkTheme.TabFrameType.Border.Enabled")           or
-           -moz-bool-pref("userChrome.DarkTheme.TabFrameType.Shadow.Enabled")
-          )
+@media (
+       (-moz-bool-pref: "userChrome.DarkTheme.TabFrameType.Border.Enabled")           or
+       (-moz-bool-pref: "userChrome.DarkTheme.TabFrameType.Shadow.Enabled")
+       )
 and
-          (
-           -moz-bool-pref("userChrome.DarkTheme.TabFrameColor.Auto.Enabled")            or
-           -moz-bool-pref("userChrome.DarkTheme.TabFrameColor.White.Enabled")           or
-           -moz-bool-pref("userChrome.DarkTheme.TabFrameColor.Black.Enabled")
-          )
+       (
+       (-moz-bool-pref: "userChrome.DarkTheme.TabFrameColor.White.Enabled")           or
+       (-moz-bool-pref: "userChrome.DarkTheme.TabFrameColor.Black.Enabled")
+       )
 and
-          (
-           -moz-bool-pref("userChrome.DarkTheme.TabFrameSaturation.Low.Enabled")        or
-           -moz-bool-pref("userChrome.DarkTheme.TabFrameSaturation.Medium.Enabled")     or
-           -moz-bool-pref("userChrome.DarkTheme.TabFrameSaturation.High.Enabled")       or
-           -moz-bool-pref("userChrome.DarkTheme.TabFrameSaturation.VeryHigh.Enabled")
-          )
-          )
+       (
+       (-moz-bool-pref: "userChrome.DarkTheme.TabFrameSaturation.Low.Enabled")        or
+       (-moz-bool-pref: "userChrome.DarkTheme.TabFrameSaturation.Medium.Enabled")     or
+       (-moz-bool-pref: "userChrome.DarkTheme.TabFrameSaturation.High.Enabled")       or
+       (-moz-bool-pref: "userChrome.DarkTheme.TabFrameSaturation.VeryHigh.Enabled")
+       )
 {
     @media (prefers-color-scheme: dark)
     {
@@ -314,75 +285,229 @@ and
                                  0
                                  calc(var(--shadow-blur) / 2)
                                  color-mix(in srgb, var(--shadow-color) var(--shadow-saturation), transparent));
-        }
 
-        /* ---------- Tab Frame Type ---------- */
+            /* ---------- Tab Frame Type ---------- */
 
-        @supports -moz-bool-pref("userChrome.DarkTheme.TabFrameType.Border.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.DarkTheme.TabFrameType.Border.Enabled")
             {
                 --shadow-blur: 2px;
             }
-        }
 
-        @supports -moz-bool-pref("userChrome.DarkTheme.TabFrameType.Shadow.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.DarkTheme.TabFrameType.Shadow.Enabled")
             {
                 --shadow-blur: 4px;
             }
-        }
 
-        /* ---------- Tab Frame Color ---------- */
+            /* ---------- Tab Frame Color ---------- */
 
-        @supports -moz-bool-pref("userChrome.DarkTheme.TabFrameColor.White.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.DarkTheme.TabFrameColor.White.Enabled")
             {
                 --shadow-color: rgb(255,255,255);
             }
-        }
 
-        @supports -moz-bool-pref("userChrome.DarkTheme.TabFrameColor.Black.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.DarkTheme.TabFrameColor.Black.Enabled")
             {
                 --shadow-color: rgb(0,0,0);
             }
-        }
 
-        /* ---------- Tab Frame Saturation ---------- */
+            /* ---------- Tab Frame Saturation ---------- */
 
-        @supports -moz-bool-pref("userChrome.DarkTheme.TabFrameSaturation.Low.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.DarkTheme.TabFrameSaturation.Low.Enabled")
             {
                 --shadow-saturation: 25%;
             }
-        }
 
-        @supports -moz-bool-pref("userChrome.DarkTheme.TabFrameSaturation.Medium.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.DarkTheme.TabFrameSaturation.Medium.Enabled")
             {
                 --shadow-saturation: 50%;
             }
-        }
 
-        @supports -moz-bool-pref("userChrome.DarkTheme.TabFrameSaturation.High.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.DarkTheme.TabFrameSaturation.High.Enabled")
             {
                 --shadow-saturation: 75%;
             }
-        }
 
-        @supports -moz-bool-pref("userChrome.DarkTheme.TabFrameSaturation.VeryHigh.Enabled")
-        {
-            :root
+            @media (-moz-bool-pref: "userChrome.DarkTheme.TabFrameSaturation.VeryHigh.Enabled")
             {
                 --shadow-saturation: 100%;
+            }
+        }
+    }
+}
+
+/* ---------------------------------------- Additional Tab Frame ---------------------------------------- */
+
+@media (
+       (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameType.Border.Enabled")          or
+       (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameType.Shadow.Enabled")
+       )
+and
+       (
+       (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameColor.White.Enabled")          or
+       (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameColor.Black.Enabled")
+       )
+and
+       (
+       (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameSaturation.Low.Enabled")       or
+       (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameSaturation.Medium.Enabled")    or
+       (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameSaturation.High.Enabled")      or
+       (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameSaturation.VeryHigh.Enabled")
+       )
+{
+    @media (prefers-color-scheme: light)
+    {
+        :root
+        {
+            --additional-outer-box-shadow: 0
+                                           0
+                                           var(--additional-shadow-blur)
+                                           color-mix(in srgb, var(--additional-shadow-color) var(--additional-shadow-saturation), transparent);
+
+            --additional-inner-box-shadow: inset
+                                           0
+                                           calc(-1 * var(--additional-shadow-blur))
+                                           var(--additional-shadow-blur)
+                                           calc(-1 * var(--additional-shadow-blur))
+                                           color-mix(in srgb, var(--additional-shadow-color) var(--additional-shadow-saturation), transparent);
+
+            --additional-outer-drop-shadow: drop-shadow(
+                                            0
+                                            0
+                                            calc(var(--additional-shadow-blur) / 2)
+                                            color-mix(in srgb, var(--additional-shadow-color) var(--additional-shadow-saturation), transparent));
+
+            /* ---------- Tab Frame Type ---------- */
+
+            @media (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameType.Border.Enabled")
+            {
+                --additional-shadow-blur: 2px;
+            }
+
+            @media (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameType.Shadow.Enabled")
+            {
+                --additional-shadow-blur: 4px;
+            }
+
+            /* ---------- Tab Frame Color ---------- */
+
+            @media (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameColor.White.Enabled")
+            {
+                --additional-shadow-color: rgb(255,255,255);
+            }
+
+            @media (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameColor.Black.Enabled")
+            {
+                --additional-shadow-color: rgb(0,0,0);
+            }
+
+            /* ---------- Tab Frame Saturation ---------- */
+
+            @media (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameSaturation.Low.Enabled")
+            {
+                --additional-shadow-saturation: 10%;
+            }
+
+            @media (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameSaturation.Medium.Enabled")
+            {
+                --additional-shadow-saturation: 25%;
+            }
+
+            @media (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameSaturation.High.Enabled")
+            {
+                --additional-shadow-saturation: 50%;
+            }
+
+            @media (-moz-bool-pref: "userChrome.LightTheme.AdditionalTabFrameSaturation.VeryHigh.Enabled")
+            {
+                --additional-shadow-saturation: 100%;
+            }
+        }
+    }
+}
+
+@media (
+       (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameType.Border.Enabled")          or
+       (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameType.Shadow.Enabled")
+       )
+and
+       (
+       (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameColor.White.Enabled")          or
+       (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameColor.Black.Enabled")
+       )
+and
+       (
+       (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameSaturation.Low.Enabled")       or
+       (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameSaturation.Medium.Enabled")    or
+       (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameSaturation.High.Enabled")      or
+       (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameSaturation.VeryHigh.Enabled")
+       )
+{
+    @media (prefers-color-scheme: light)
+    {
+        :root
+        {
+            --additional-outer-box-shadow: 0
+                                           0
+                                           var(--additional-shadow-blur)
+                                           color-mix(in srgb, var(--additional-shadow-color) var(--additional-shadow-saturation), transparent);
+
+            --additional-inner-box-shadow: inset
+                                           0
+                                           calc(-1 * var(--additional-shadow-blur))
+                                           var(--additional-shadow-blur)
+                                           calc(-1 * var(--additional-shadow-blur))
+                                           color-mix(in srgb, var(--additional-shadow-color) var(--additional-shadow-saturation), transparent);
+
+            --additional-outer-drop-shadow: drop-shadow(
+                                            0
+                                            0
+                                            calc(var(--additional-shadow-blur) / 2)
+                                            color-mix(in srgb, var(--additional-shadow-color) var(--additional-shadow-saturation), transparent));
+
+            /* ---------- Tab Frame Type ---------- */
+
+            @media (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameType.Border.Enabled")
+            {
+                --additional-shadow-blur: 2px;
+            }
+
+            @media (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameType.Shadow.Enabled")
+            {
+                --additional-shadow-blur: 4px;
+            }
+
+            /* ---------- Tab Frame Color ---------- */
+
+            @media (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameColor.White.Enabled")
+            {
+                --additional-shadow-color: rgb(255,255,255);
+            }
+
+            @media (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameColor.Black.Enabled")
+            {
+                --additional-shadow-color: rgb(0,0,0);
+            }
+
+            /* ---------- Tab Frame Saturation ---------- */
+
+            @media (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameSaturation.Low.Enabled")
+            {
+                --additional-shadow-saturation: 25%;
+            }
+
+            @media (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameSaturation.Medium.Enabled")
+            {
+                --additional-shadow-saturation: 50%;
+            }
+
+            @media (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameSaturation.High.Enabled")
+            {
+                --additional-shadow-saturation: 75%;
+            }
+
+            @media (-moz-bool-pref: "userChrome.DarkTheme.AdditionalTabFrameSaturation.VeryHigh.Enabled")
+            {
+                --additional-shadow-saturation: 100%;
             }
         }
     }
@@ -406,29 +531,36 @@ and
 
         &[tabsintitlebar] .titlebar-color
         {
-            color: inherit !important;
-            --toolbarbutton-icon-fill: currentColor !important;
             --toolbarbutton-hover-background: color-mix(in srgb, currentColor 10%, transparent) !important;
             --toolbarbutton-active-background: color-mix(in srgb, currentColor 20%, transparent) !important;
         }
     }
 }
 
-/* ---------------------------------------- Light Theme / Dark Theme ---------------------------------------- */
+/* ---------------------------------------- Light Theme / Dark Theme / Alpenglow Theme ---------------------------------------- */
 
-:root[style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26)"] .tabbrowser-tab[visuallyselected] .tab-background
+:root:is(
+         [style*="--lwt-accent-color: rgb(240, 240, 244); --lwt-text-color: rgba(21, 20, 26)"],
+         [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254)"],
+         [style*="--lwt-accent-color: rgb(249, 249, 251); --lwt-text-color: rgba(32, 18, 59)"],
+         [style*="--lwt-accent-color: rgb(249, 249, 251); --lwt-text-color: rgba(232, 224, 255)"]
+        )
 {
-    --tab-selected-bgcolor: initial;
-}
+    .tabbrowser-tab[visuallyselected]
+    {
+        color: var(--toolbar-color) !important;
 
-:root[style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254)"] .tabbrowser-tab[visuallyselected] .tab-background
-{
-    --lwt-selected-tab-background-color: initial;
+        .tab-background
+        {
+            background-color: var(--toolbar-bgcolor) !important;
+            background-image: none !important;
+        }
+    }
 }
 
 /* ---------------------------------------- Pinned Tabs Width ---------------------------------------- */
 
-@supports -moz-bool-pref("userChrome.PinnedTabsWidthLowIncrease-Enabled")
+@media (-moz-bool-pref: "userChrome.Tabs.Pinned.Width.LowOffset.Enabled")
 {
     :root
     {
@@ -436,7 +568,7 @@ and
     }
 }
 
-@supports -moz-bool-pref("userChrome.PinnedTabsWidthHighIncrease-Enabled")
+@media (-moz-bool-pref: "userChrome.Tabs.Pinned.Width.HighOffset.Enabled")
 {
     :root
     {
@@ -473,9 +605,9 @@ and
 
 /* ---------------------------------------- Toolbar Transparency ---------------------------------------- */
 
-@supports -moz-bool-pref("userChrome.Toolbar.Transparency.Low.Enabled")    or
-          -moz-bool-pref("userChrome.Toolbar.Transparency.Medium.Enabled") or
-          -moz-bool-pref("userChrome.Toolbar.Transparency.High.Enabled")
+@media (-moz-bool-pref: "userChrome.Toolbar.Transparency.Low.Enabled")    or
+       (-moz-bool-pref: "userChrome.Toolbar.Transparency.Medium.Enabled") or
+       (-moz-bool-pref: "userChrome.Toolbar.Transparency.High.Enabled")
 {
     :root[tabsintitlebar]:not(:-moz-lwtheme)
     {
@@ -483,29 +615,31 @@ and
         --toolbar-field-background-color: color-mix(in srgb, Field, transparent var(--toolbar-transparency)) !important;
         --outer-drop-shadow: none !important;
         --inner-box-shadow: none !important;
+        --additional-outer-drop-shadow: none !important;
+        --additional-inner-box-shadow: none !important;
         --toolbarbutton-hover-background: color-mix(in srgb, currentColor 10%, transparent) !important;
         --toolbarbutton-active-background: color-mix(in srgb, currentColor 20%, transparent) !important;
         --urlbar-box-hover-bgcolor: color-mix(in srgb, currentColor 10%, transparent) !important;
         --urlbar-box-active-bgcolor: color-mix(in srgb, currentColor 20%, transparent) !important;
 
-        @supports -moz-bool-pref("userChrome.Toolbar.Transparency.Low.Enabled")
+        @media (-moz-bool-pref: "userChrome.Toolbar.Transparency.Low.Enabled")
         {
             --toolbar-transparency: 25%;
         }
 
-        @supports -moz-bool-pref("userChrome.Toolbar.Transparency.Medium.Enabled")
+        @media (-moz-bool-pref: "userChrome.Toolbar.Transparency.Medium.Enabled")
         {
             --toolbar-transparency: 50%;
         }
 
-        @supports -moz-bool-pref("userChrome.Toolbar.Transparency.High.Enabled")
+        @media (-moz-bool-pref: "userChrome.Toolbar.Transparency.High.Enabled")
         {
             --toolbar-transparency: 75%;
         }
     }
 }
 
-@supports -moz-bool-pref("userChrome.Toolbar.Transparency.VeryHigh.Enabled")
+@media (-moz-bool-pref: "userChrome.Toolbar.Transparency.VeryHigh.Enabled")
 {
     :root[tabsintitlebar]:not(:-moz-lwtheme)
     {
@@ -522,7 +656,8 @@ and
         #urlbar:not([focused], [open]) > #urlbar-background,
         #searchbar:not(:focus-within)
         {
-            box-shadow: var(--outer-box-shadow, none) !important;
+            box-shadow: var(--additional-outer-box-shadow, 0 0 0 transparent),
+                        var(--outer-box-shadow, 0 0 0 transparent) !important;
         }
 
         #TabsToolbar::before
@@ -552,11 +687,11 @@ and
     --tab-min-height: 40px !important;
 }
 
-/* ---------------------------------------- Context Menus (Not System Related) ---------------------------------------- */
+/* ---------------------------------------- Context Menu (Not System Related) ---------------------------------------- */
 
-@supports -moz-bool-pref("userChrome.CompactContextMenu-Enabled") or
-          -moz-bool-pref("userChrome.NormalContextMenu-Enabled") or
-          -moz-bool-pref("userChrome.TouchContextMenu-Enabled")
+@media (-moz-bool-pref: "userChrome.Menu.Size.Compact.Enabled") or
+       (-moz-bool-pref: "userChrome.Menu.Size.Normal.Enabled")  or
+       (-moz-bool-pref: "userChrome.Menu.Size.Touch.Enabled")
 {
     :root
     {
@@ -568,30 +703,21 @@ and
         --panel-separator-margin-vertical:    var(--browser-context-menu-margin-padding) !important;
         --panel-subview-body-padding-block:   var(--browser-context-menu-margin-padding) !important;
         --panel-subview-body-padding-inline:  0px !important;
-    }
-}
 
-@supports -moz-bool-pref("userChrome.CompactContextMenu-Enabled")
-{
-    :root
-    {
-        --browser-context-menu-margin-padding: 4px;
-    }
-}
+        @media (-moz-bool-pref: "userChrome.Menu.Size.Compact.Enabled")
+        {
+            --browser-context-menu-margin-padding: 4px;
+        }
 
-@supports -moz-bool-pref("userChrome.NormalContextMenu-Enabled")
-{
-    :root
-    {
-        --browser-context-menu-margin-padding: 6px;
-    }
-}
+        @media (-moz-bool-pref: "userChrome.Menu.Size.Normal.Enabled")
+        {
+            --browser-context-menu-margin-padding: 6px;
+        }
 
-@supports -moz-bool-pref("userChrome.TouchContextMenu-Enabled")
-{
-    :root
-    {
-        --browser-context-menu-margin-padding: 8px;
+        @media (-moz-bool-pref: "userChrome.Menu.Size.Touch.Enabled")
+        {
+            --browser-context-menu-margin-padding: 8px;
+        }
     }
 }
 
@@ -619,7 +745,7 @@ and
 
 /* ---------------------------------------- Drag Space ---------------------------------------- */
 
-@supports -moz-bool-pref("userChrome.DragSpace.Left.Disabled")
+@media (-moz-bool-pref: "userChrome.DragSpace.Left.Disabled")
 {
     .titlebar-spacer[type="pre-tabs"]
     {
@@ -627,7 +753,7 @@ and
     }
 }
 
-@supports -moz-bool-pref("userChrome.DragSpace.Right.Disabled")
+@media (-moz-bool-pref: "userChrome.DragSpace.Right.Disabled")
 {
     .titlebar-spacer[type="post-tabs"]
     {
@@ -635,7 +761,7 @@ and
     }
 }
 
-@supports -moz-bool-pref("userChrome.DragSpace.Top.Windowed.Enabled")
+@media (-moz-bool-pref: "userChrome.DragSpace.Top.Windowed.Enabled")
 {
     :root[sizemode="normal"]
     {
@@ -643,7 +769,7 @@ and
     }
 }
 
-@supports -moz-bool-pref("userChrome.DragSpace.Top.Maximized.Enabled")
+@media (-moz-bool-pref: "userChrome.DragSpace.Top.Maximized.Enabled")
 {
     :root[sizemode="maximized"]
     {
@@ -651,7 +777,7 @@ and
     }
 }
 
-@supports -moz-bool-pref("userChrome.DragSpace.Top.Fullscreen.Enabled")
+@media (-moz-bool-pref: "userChrome.DragSpace.Top.Fullscreen.Enabled")
 {
     :root[sizemode="fullscreen"]
     {
@@ -694,7 +820,8 @@ spacer[part="overflow-end-indicator"]
     {
         position: relative;
         z-index: 2 !important;
-        filter: var(--outer-drop-shadow, none);
+        filter: var(--additional-outer-drop-shadow, 0 0 0 transparent)
+                var(--outer-drop-shadow, 0 0 0 transparent);
     }
 
     &:not([visuallyselected])
@@ -771,16 +898,16 @@ spacer[part="overflow-end-indicator"]
 
 /* -------------------- Selected Tab Indicator -------------------- */
 
-@supports -moz-bool-pref("userChrome.Tabs.SelectedTabIndicator.Enabled")
+@media (-moz-bool-pref: "userChrome.Tabs.SelectedTabIndicator.Enabled")
 {
     .tabbrowser-tab[visuallyselected][usercontextid] .tab-background
     {
-        box-shadow: inset 0 -2px 0 var(--tab-loading-fill) !important;
+        box-shadow: inset 0 -2px 0 var(--focus-outline-color) !important;
     }
 
     .tabbrowser-tab[visuallyselected]:not([usercontextid]) .tab-background
     {
-        box-shadow: inset 0 2px 0 var(--tab-loading-fill) !important;
+        box-shadow: inset 0 2px 0 var(--focus-outline-color) !important;
     }
 }
 
@@ -922,7 +1049,6 @@ spacer[part="overflow-end-indicator"]
 .tab-label-container
 {
     height: var(--tab-min-height) !important;
-    font-size: 12px !important;
 }
 
 .tab-label
@@ -976,7 +1102,8 @@ spacer[part="overflow-end-indicator"]
     height: 100%;
     bottom: 0px;
     inset-inline-start: 0px;
-    box-shadow: var(--inner-box-shadow, none);
+    box-shadow: var(--additional-inner-box-shadow, inset 0 0 0 transparent),
+                var(--inner-box-shadow, inset 0 0 0 transparent);
     pointer-events: none;
     z-index: 2;
 }
@@ -1021,22 +1148,24 @@ spacer[part="overflow-end-indicator"]
 
 /* ---------------------------------------- Separators ---------------------------------------- */
 
-@supports -moz-bool-pref("userChrome.TabSeparatorsLowSaturation-Enabled")    or
-          -moz-bool-pref("userChrome.TabSeparatorsMediumSaturation-Enabled")
+@media (-moz-bool-pref: "userChrome.TabSeparators.Saturation.Low.Enabled")    or
+       (-moz-bool-pref: "userChrome.TabSeparators.Saturation.Medium.Enabled")
 {
     .tab-stack
     {
-        margin-inline-start: 1px !important;
+        margin-inline-end: 1px !important;
     }
 
-    #tabbrowser-tabs:not([movingtab]) .tab-stack::before
+    #tabbrowser-tabs:not([movingtab]) .tabbrowser-tab:nth-child(1 of :not([hidden])) .tab-stack::before,
+    #tabbrowser-tabs[overflow][haspinnedtabs]:not([movingtab]) .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) .tab-stack::before,
+    #tabbrowser-tabs:not([movingtab]) .tab-stack::after
     {
         content: "";
         display: block;
         position: absolute;
         width: 1px;
         height: 50%;
-        border-inline-start: 1px solid currentColor;
+        border-inline-end: 1px solid currentColor;
         top: 25%;
         opacity: var(--separators-color-saturation);
         box-sizing: border-box;
@@ -1054,31 +1183,34 @@ spacer[part="overflow-end-indicator"]
         transform: translateX(var(--tab-separator-offset));
     }
 
-    .tabbrowser-tab:is(
-                       [selected]:not([hidden]),
-                       [selected]:not([hidden]) + .tabbrowser-tab:not([hidden]),
-                       [selected]:not([hidden]) + .tabbrowser-tab[hidden] + .tabbrowser-tab:not([hidden]),
-                       [selected]:not([hidden]) + .tabbrowser-tab[hidden] ~ .tabbrowser-tab[hidden] + .tabbrowser-tab:not([hidden]),
-                       :hover:not([hidden]),
-                       :hover:not([hidden]) + .tabbrowser-tab:not([hidden]),
-                       :hover:not([hidden]) + .tabbrowser-tab[hidden] + .tabbrowser-tab:not([hidden]),
-                       :hover:not([hidden]) + .tabbrowser-tab[hidden] ~ .tabbrowser-tab[hidden] + .tabbrowser-tab:not([hidden]),
-                       [multiselected]:not([hidden]),
-                       [multiselected]:not([hidden]) + .tabbrowser-tab:not([hidden]),
-                       [multiselected]:not([hidden]) + .tabbrowser-tab[hidden] + .tabbrowser-tab:not([hidden]),
-                       [multiselected]:not([hidden]) + .tabbrowser-tab[hidden] ~ .tabbrowser-tab[hidden] + .tabbrowser-tab:not([hidden])
-                      ) .tab-stack::before
+    .tab-stack::after
+    {
+        inset-inline-start: 100%;
+        transform: translateX(var(--tab-separator-offset));
+    }
+
+    :root:-moz-locale-dir(rtl) .tab-stack::after
+    {
+        transform: translateX(calc(-1 * var(--tab-separator-offset)));
+    }
+
+    .tabbrowser-tab:not([hidden]):is([selected], :hover, [multiselected]) .tab-stack::before,
+    .tabbrowser-tab:not([hidden]):is([selected], :hover, [multiselected]) .tab-stack::after,
+    .tabbrowser-tab:not([hidden]):has(+ .tabbrowser-tab:is([selected], :hover, [multiselected]):not([hidden])) .tab-stack::after,
+    .tabbrowser-tab:not([hidden]):has(+ .tabbrowser-tab[hidden] + .tabbrowser-tab:is([selected], :hover, [multiselected]):not([hidden])) .tab-stack::after,
+    .tabbrowser-tab:not([hidden]):has(+ .tabbrowser-tab[hidden] ~ .tabbrowser-tab[hidden] + .tabbrowser-tab:is([selected], :hover, [multiselected]):not([hidden])) .tab-stack::after
     {
         opacity: 0 !important;
     }
 
-    .tabbrowser-tab:nth-child(1 of :not([hidden])) .tab-stack::before,
-    #tabbrowser-tabs[overflow] .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) .tab-stack::before
+    #tabbrowser-tabs[overflow] .tabbrowser-tab[pinned]:not([selected], :hover, [multiselected]):has(+ .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden]))) .tab-stack::after,
+    #tabbrowser-tabs[overflow] .tabbrowser-tab[pinned]:not([selected], :hover, [multiselected]):has(+ .tabbrowser-tab[hidden] + .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden]))) .tab-stack::after,
+    #tabbrowser-tabs[overflow] .tabbrowser-tab[pinned]:not([selected], :hover, [multiselected]):has(+ .tabbrowser-tab[hidden] ~ .tabbrowser-tab[hidden] + .tabbrowser-tab:nth-child(1 of :not([pinned], [hidden]))) .tab-stack::after
     {
-        opacity: 0 !important;
+        opacity: var(--separators-color-saturation) !important;
     }
 
-    @supports -moz-bool-pref("userChrome.TabSeparatorsLowSaturation-Enabled")
+    @media (-moz-bool-pref: "userChrome.TabSeparators.Saturation.Low.Enabled")
     {
         :root
         {
@@ -1086,7 +1218,7 @@ spacer[part="overflow-end-indicator"]
         }
     }
 
-    @supports -moz-bool-pref("userChrome.TabSeparatorsMediumSaturation-Enabled")
+    @media (-moz-bool-pref: "userChrome.TabSeparators.Saturation.Medium.Enabled")
     {
         :root
         {
@@ -1094,65 +1226,6 @@ spacer[part="overflow-end-indicator"]
         }
     }
 }
-
-/*
-
-.tab-stack
-{
-    margin-right: 1px !important;
-}
-
-.tabbrowser-tab:is(
-                   :not([hidden]):first-of-type,
-                   [hidden]:first-of-type + .tabbrowser-tab:not([hidden]),
-                   [hidden]:first-of-type ~ .tabbrowser-tab[hidden] + .tabbrowser-tab:not([hidden])
-                  ) .tab-stack::before,
-#tabbrowser-tabs[overflow] .tabbrowser-tab[first-visible-unpinned-tab] .tab-stack::before,
-.tab-stack::after
-{
-    content: "";
-    display: block;
-    position: absolute;
-    width: 1px;
-    height: 50%;
-    border-left: 1px solid currentColor;
-    top: 25%;
-    opacity: var(--separators-color-saturation, 0);
-    box-sizing: border-box;
-    pointer-events: none;
-}
-
-.tab-stack::before
-{
-    right: 100%;
-    transform: translateX(calc(-1 * var(--tab-separator-offset)));
-}
-
-.tab-stack::after
-{
-    left: 100%;
-    transform: translateX(var(--tab-separator-offset));
-}
-
-#tabbrowser-tabs:is([movingtab], :first-child) .tab-stack::before,
-#tabbrowser-tabs[movingtab] .tab-stack::after
-{
-    opacity: 0;
-}
-
-.tabbrowser-tab:not([hidden]):is(
-                                 [selected], :hover, [multiselected], [usercontextid]
-                                ) .tab-stack::before,
-.tabbrowser-tab:not([hidden]):is(
-                                 [selected], :hover, [multiselected], [usercontextid],
-                                 :has(+ .tabbrowser-tab:not([hidden]):is([selected], :hover, [multiselected], [usercontextid])),
-                                 :has(+ .tabbrowser-tab[hidden] ~ .tabbrowser-tab:not([hidden]):is([selected], :hover, [multiselected], [usercontextid]))
-                                ) .tab-stack::after
-{
-    opacity: 0 !important;
-}
-       
-*/
 
 /* ---------------------------------------- Tab Scroll Animation ---------------------------------------- */
        
@@ -1189,7 +1262,7 @@ spacer[part="overflow-end-indicator"]
 
 /* ---------------------------------------- Tabs On Bottom ---------------------------------------- */
 
-@supports -moz-bool-pref("userChrome.Tabs.TabsOnBottom.Enabled")
+@media (-moz-bool-pref: "userChrome.Tabs.TabsOnBottom.Enabled")
 {
     /* -------------------- Title Bar -------------------- */
 
@@ -1245,28 +1318,28 @@ spacer[part="overflow-end-indicator"]
 
 /* ---------------------------------------- One Line ---------------------------------------- */
 
-@supports -moz-bool-pref("userChrome.OneLine.TabBarFirst.Enabled") or
-          -moz-bool-pref("userChrome.OneLine.NavBarFirst.Enabled")
+@media (-moz-bool-pref: "userChrome.OneLine.TabBarFirst.Enabled") or
+       (-moz-bool-pref: "userChrome.OneLine.NavBarFirst.Enabled")
 {
     :root
     {
-        @supports -moz-bool-pref("userChrome.OneLine.NavBarWidth.Low.Enabled")
+        @media (-moz-bool-pref: "userChrome.OneLine.NavBarWidth.Low.Enabled")
         {
             --navbar-width: 20%;
         }
 
-        @supports -moz-bool-pref("userChrome.OneLine.NavBarWidth.Medium.Enabled")
+        @media (-moz-bool-pref: "userChrome.OneLine.NavBarWidth.Medium.Enabled")
         {
             --navbar-width: 30%;
         }
 
-        @supports -moz-bool-pref("userChrome.OneLine.NavBarWidth.High.Enabled")
+        @media (-moz-bool-pref: "userChrome.OneLine.NavBarWidth.High.Enabled")
         {
             --navbar-width: 40%;
         }
     }
 
-    @supports -moz-bool-pref("userChrome.OneLine.TabBarFirst.Enabled")
+    @media (-moz-bool-pref: "userChrome.OneLine.TabBarFirst.Enabled")
     {
         #navigator-toolbox
         {
@@ -1279,7 +1352,7 @@ spacer[part="overflow-end-indicator"]
         }
     }
 
-    @supports -moz-bool-pref("userChrome.OneLine.NavBarFirst.Enabled")
+    @media (-moz-bool-pref: "userChrome.OneLine.NavBarFirst.Enabled")
     {
         #navigator-toolbox
         {
@@ -1329,7 +1402,8 @@ spacer[part="overflow-end-indicator"]
         -moz-context-properties: fill;
         z-index: -1;
         pointer-events: none;
-        filter: var(--outer-drop-shadow, none);
+        filter: var(--additional-outer-drop-shadow, 0 0 0 transparent)
+                var(--outer-drop-shadow, 0 0 0 transparent);
     }
 
     #urlbar-container,
@@ -1366,7 +1440,8 @@ spacer[part="overflow-end-indicator"]
         height: 100%;
         inset-block-start: 0px;
         inset-inline-start: 0px;
-        box-shadow: var(--outer-box-shadow, none);
+        box-shadow: var(--additional-outer-box-shadow, 0 0 0 transparent),
+                    var(--outer-box-shadow, 0 0 0 transparent);
         pointer-events: none;
         clip-path: inset(-4px 0px 0px 0px);
     }
@@ -1380,11 +1455,11 @@ spacer[part="overflow-end-indicator"]
 
     /* -------------------- Floating Tabs -------------------- */
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option1.Enabled") or
-              -moz-bool-pref("userChrome.Tabs.Option2.Enabled") or
-              -moz-bool-pref("userChrome.Tabs.Option3.Enabled") or
-              -moz-bool-pref("userChrome.Tabs.Option4.Enabled") or
-              -moz-bool-pref("userChrome.Tabs.Option5.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option1.Enabled") or
+           (-moz-bool-pref: "userChrome.Tabs.Option2.Enabled") or
+           (-moz-bool-pref: "userChrome.Tabs.Option3.Enabled") or
+           (-moz-bool-pref: "userChrome.Tabs.Option4.Enabled") or
+           (-moz-bool-pref: "userChrome.Tabs.Option5.Enabled")
     {
         #nav-bar
         {
@@ -1402,9 +1477,9 @@ spacer[part="overflow-end-indicator"]
 
     /* -------------------- Attached Tabs -------------------- */
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option6.Enabled") or
-              -moz-bool-pref("userChrome.Tabs.Option7.Enabled") or
-              -moz-bool-pref("userChrome.Tabs.Option8.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option6.Enabled") or
+           (-moz-bool-pref: "userChrome.Tabs.Option7.Enabled") or
+           (-moz-bool-pref: "userChrome.Tabs.Option8.Enabled")
     {
         #nav-bar
         {
@@ -1421,10 +1496,10 @@ spacer[part="overflow-end-indicator"]
         }
     }
 
-    @supports -moz-bool-pref("userChrome.Tabs.Option9.Enabled")  or
-              -moz-bool-pref("userChrome.Tabs.Option10.Enabled") or
-              -moz-bool-pref("userChrome.Tabs.Option11.Enabled") or
-              -moz-bool-pref("userChrome.Tabs.Option12.Enabled")
+    @media (-moz-bool-pref: "userChrome.Tabs.Option9.Enabled")  or
+           (-moz-bool-pref: "userChrome.Tabs.Option10.Enabled") or
+           (-moz-bool-pref: "userChrome.Tabs.Option11.Enabled") or
+           (-moz-bool-pref: "userChrome.Tabs.Option12.Enabled")
     {
         #nav-bar
         {
@@ -1440,27 +1515,11 @@ spacer[part="overflow-end-indicator"]
     }
 }
 
-/* ---------------------------------------- Rounded Elements ---------------------------------------- */
-
-@supports -moz-bool-pref("userChrome.Tabs.Option3.Enabled")  or
-          -moz-bool-pref("userChrome.Tabs.Option4.Enabled")  or
-          -moz-bool-pref("userChrome.Tabs.Option5.Enabled")  or
-          -moz-bool-pref("userChrome.Tabs.Option8.Enabled")  or
-          -moz-bool-pref("userChrome.Tabs.Option9.Enabled")  or
-          -moz-bool-pref("userChrome.Tabs.Option11.Enabled") or
-          -moz-bool-pref("userChrome.Tabs.Option12.Enabled")
-{
-    #tabs-newtab-button > .toolbarbutton-icon
-    {
-        border-radius: 50% !important;
-    }
-}
-
 /* ---------------------------------------- Menu Icons ---------------------------------------- */
 
 /* ---------- Regular Icons ---------- */
 
-@supports -moz-bool-pref("userChrome.RegularMenuIcons-Enabled")
+@media (-moz-bool-pref: "userChrome.Menu.Icons.Regular.Enabled")
 {
     :root
     {
@@ -1514,7 +1573,7 @@ spacer[part="overflow-end-indicator"]
 
 /* ---------- Filled Icons ---------- */
 
-@supports -moz-bool-pref("userChrome.FilledMenuIcons-Enabled")
+@media (-moz-bool-pref: "userChrome.Menu.Icons.Filled.Enabled")
 {
     :root
     {
@@ -1568,8 +1627,8 @@ spacer[part="overflow-end-indicator"]
 
 /* ---------- Native Browser Menus ---------- */
 
-@supports -moz-bool-pref("userChrome.RegularMenuIcons-Enabled") or
-          -moz-bool-pref("userChrome.FilledMenuIcons-Enabled")
+@media (-moz-bool-pref: "userChrome.Menu.Icons.Regular.Enabled") or
+       (-moz-bool-pref: "userChrome.Menu.Icons.Filled.Enabled")
 {
     :is(
 

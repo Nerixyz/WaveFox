@@ -17,29 +17,22 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 
 ---
 
-##### Minimum Requirements
-- Firefox 119
-- Firefox 115 ESR
-- Windows
-- MacOS
-- Linux
-
 ###### Have a question not related to this project? These resources will help you
 
 - [Mozilla support](https://support.mozilla.org/en-US/)
-- [Reddit (New)](https://www.reddit.com/r/MozillaFirefox)
-- [Reddit (Old / Restricted?)](https://www.reddit.com/r/firefox)
-- [Fedia](https://www.fedia.io/m/firefox)
+- [Reddit (Main)](https://www.reddit.com/r/firefox)
+- [Reddit (Alt)](https://www.reddit.com/r/MozillaFirefox)
 - [Reddit (CSS)](https://www.reddit.com/r/FirefoxCSS)
 
-## Attention!
-- Do not use the Beta version of the style as it may be unstable
-- There are 3 styles available - Beta, Regular and ESR. ESR style is for Firefox 115 ESR only. The Regular style is for the specified browser version, but generally works with newer versions as well. Beta style is only for a future version of the browser.
-- The ESR style is updated only when needed. The regular style is updated once a month. Updates contain various fixes, compatibility with the new version of the browser, removal of obsolete code and the addition of new options
-- The installation steps and available options are different for each style
-- All the necessary information is in the [releases section](https://github.com/QNetITQ/WaveFox/releases)
-
 ## Installation
+
+- ##### Minimum Requirements
+  - Firefox 120 Beta (This page)
+  - [Firefox 119 (Home page, installation, available options)](https://github.com/QNetITQ/WaveFox/tree/v1.6.119)
+  - [Firefox 115 ESR (Home page, installation, available options)](https://github.com/QNetITQ/WaveFox/tree/v1.6.115)
+  - Windows
+  - MacOS
+  - Linux
 
 - [Download Firefox](https://www.mozilla.org/en-US/firefox/all/#product-desktop-release) / [Download WaveFox](https://github.com/QNetITQ/WaveFox/releases)
 
@@ -142,10 +135,15 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 
 ## Optional
 
-### Accent Color / Windows 11 / Windows 10
+### Adding third-party styles
+Create a file `third_party_custom_styles.css`, add the desired styles inside and put it in the `chrome` folder. Please note that this file has maximum execution priority. It will overwrite all styles, regardless of selector specificity. I make no guarantees of compatibility and will not resolve any style conflicts you may encounter.
+
+- `userChrome.Style.ThirdParty.Enabled`
+
+### Windows Accent Color
 ![изображение](https://github.com/QNetITQ/WaveFox/assets/85301851/55b01904-6620-4e36-9b6d-91b092db725c)
 
-- `widget.windows.titlebar-accent.enabled`
+- `browser.theme.windows.accent-color-in-tabs.enabled`
 
 ### Linux Transparency
 Requires Linux with transparency support. Tested on Manjaro KDE + [ForceBlur](https://github.com/esjeon/kwin-forceblur). Works only with the system theme.
@@ -168,7 +166,7 @@ Works only with the system theme.
 - `userChrome.Toolbar.Transparency.VeryHigh.Enabled`
 
 ### Tab Frame
-The tab frame consists of type, color and saturation.
+Two tab frames are available. Both consist of type, color and saturation. Can be used individually or simultaneously. In most cases there is no point in using both. However, it can be useful if there is not enough contrast.
 ![изображение](https://user-images.githubusercontent.com/85301851/152011749-4d5619b3-0fd8-40f9-a3dc-96be31839971.png)
 
 ##### Light Theme
@@ -177,17 +175,23 @@ The tab frame consists of type, color and saturation.
 
 - `userChrome.LightTheme.TabFrameType.Border.Enabled`
 - `userChrome.LightTheme.TabFrameType.Shadow.Enabled`
-
+- `userChrome.LightTheme.AdditionalTabFrameType.Border.Enabled`
+- `userChrome.LightTheme.AdditionalTabFrameType.Shadow.Enabled`
 ###### Color
 - `userChrome.LightTheme.TabFrameColor.White.Enabled`
 - `userChrome.LightTheme.TabFrameColor.Black.Enabled`
-
+- `userChrome.LightTheme.AdditionalTabFrameColor.White.Enabled`
+- `userChrome.LightTheme.AdditionalTabFrameColor.Black.Enabled`
 ###### Saturation
 
 - `userChrome.LightTheme.TabFrameSaturation.Low.Enabled`
 - `userChrome.LightTheme.TabFrameSaturation.Medium.Enabled`
 - `userChrome.LightTheme.TabFrameSaturation.High.Enabled`
 - `userChrome.LightTheme.TabFrameSaturation.VeryHigh.Enabled`
+- `userChrome.LightTheme.AdditionalTabFrameSaturation.Low.Enabled`
+- `userChrome.LightTheme.AdditionalTabFrameSaturation.Medium.Enabled`
+- `userChrome.LightTheme.AdditionalTabFrameSaturation.High.Enabled`
+- `userChrome.LightTheme.AdditionalTabFrameSaturation.VeryHigh.Enabled`
 
 ##### Dark Theme
 
@@ -195,24 +199,30 @@ The tab frame consists of type, color and saturation.
 
 - `userChrome.DarkTheme.TabFrameType.Border.Enabled`
 - `userChrome.DarkTheme.TabFrameType.Shadow.Enabled`
-
+- `userChrome.DarkTheme.AdditionalTabFrameType.Border.Enabled`
+- `userChrome.DarkTheme.AdditionalTabFrameType.Shadow.Enabled`
 ###### Color
 - `userChrome.DarkTheme.TabFrameColor.White.Enabled`
 - `userChrome.DarkTheme.TabFrameColor.Black.Enabled`
-
+- `userChrome.DarkTheme.AdditionalTabFrameColor.White.Enabled`
+- `userChrome.DarkTheme.AdditionalTabFrameColor.Black.Enabled`
 ###### Saturation
 
 - `userChrome.DarkTheme.TabFrameSaturation.Low.Enabled`
 - `userChrome.DarkTheme.TabFrameSaturation.Medium.Enabled`
 - `userChrome.DarkTheme.TabFrameSaturation.High.Enabled`
 - `userChrome.DarkTheme.TabFrameSaturation.VeryHigh.Enabled`
+- `userChrome.DarkTheme.AdditionalTabFrameSaturation.Low.Enabled`
+- `userChrome.DarkTheme.AdditionalTabFrameSaturation.Medium.Enabled`
+- `userChrome.DarkTheme.AdditionalTabFrameSaturation.High.Enabled`
+- `userChrome.DarkTheme.AdditionalTabFrameSaturation.VeryHigh.Enabled`
 
 ### Tab Separators
 
 ![изображение](https://user-images.githubusercontent.com/85301851/152351312-f6ad4578-e7d5-40b7-8b2d-49388a750f54.png)
 
-- `userChrome.TabSeparatorsLowSaturation-Enabled`
-- `userChrome.TabSeparatorsMediumSaturation-Enabled`
+- `userChrome.TabSeparators.Saturation.Low.Enabled`
+- `userChrome.TabSeparators.Saturation.Medium.Enabled`
 
 ### Menu Density
 
@@ -222,9 +232,9 @@ By default context menus follow the selected interface density, but it is possib
 | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | ![изображение](https://user-images.githubusercontent.com/85301851/152645825-7d351e3e-b938-4fa1-a460-1f699ed1c3c6.png) | ![изображение](https://user-images.githubusercontent.com/85301851/152645878-d917e841-837a-4a11-8fc1-ce0fc2262aef.png) | ![изображение](https://user-images.githubusercontent.com/85301851/152645915-833c1b22-e320-445f-817e-408ea26f7605.png) |
 
-- `userChrome.CompactContextMenu-Enabled`
-- `userChrome.NormalContextMenu-Enabled`
-- `userChrome.TouchContextMenu-Enabled`
+- `userChrome.Menu.Size.Compact.Enabled`
+- `userChrome.Menu.Size.Normal.Enabled`
+- `userChrome.Menu.Size.Touch.Enabled`
 
 ### Icons
 
@@ -232,8 +242,8 @@ By default context menus follow the selected interface density, but it is possib
 | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
 | ![изображение](https://user-images.githubusercontent.com/85301851/151192118-0cbdb5a7-a77f-4275-8841-2ac321657c86.png) | ![изображение](https://user-images.githubusercontent.com/85301851/151192708-5ae7691c-ce07-49d8-b4fb-fc58692b63fe.png) |
 
-- `userChrome.RegularMenuIcons-Enabled`
-- `userChrome.FilledMenuIcons-Enabled`
+- `userChrome.Menu.Icons.Regular.Enabled`
+- `userChrome.Menu.Icons.Filled.Enabled`
 - `svg.context-properties.content.enabled` (Required key)
 
 ### Drag Space
@@ -250,8 +260,8 @@ By default context menus follow the selected interface density, but it is possib
 
 ![Снимок](https://user-images.githubusercontent.com/85301851/185612113-7bb0445f-8993-45bd-916d-d066e88ea7f4.PNG)
 
-- `userChrome.PinnedTabsWidthLowIncrease-Enabled`
-- `userChrome.PinnedTabsWidthHighIncrease-Enabled`
+- `userChrome.Tabs.Pinned.Width.LowOffset.Enabled`
+- `userChrome.Tabs.Pinned.Width.HighOffset.Enabled`
 
 ### Selected Tab Indicator
 
