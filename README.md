@@ -17,6 +17,8 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 
 ---
 
+![WaveFox_Preview](https://github.com/QNetITQ/WaveFox/assets/85301851/268bda8c-b987-45d1-966b-59992c18e66e)
+
 ###### Have a question not related to this project? These resources will help you
 
 - [Mozilla support](https://support.mozilla.org/en-US/)
@@ -27,9 +29,10 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 ## Installation
 
 - ##### Minimum Requirements
-  - Firefox 120 Beta (This page)
-  - [Firefox 119 (Home page, installation, available options)](https://github.com/QNetITQ/WaveFox/tree/v1.6.119)
-  - [Firefox 115 ESR (Home page, installation, available options)](https://github.com/QNetITQ/WaveFox/tree/v1.6.115)
+
+  - Firefox 120 + [WaveFox v1.6.120](https://github.com/QNetITQ/WaveFox/tree/v1.6.120)
+  - Firefox 119 + [WaveFox v1.6.119](https://github.com/QNetITQ/WaveFox/tree/v1.6.119)
+  - Firefox 115 ESR + [WaveFox v1.6.115.0.3](https://github.com/QNetITQ/WaveFox/tree/v1.6.115)
   - Windows
   - MacOS
   - Linux
@@ -45,14 +48,14 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
   ![Profile 2](https://github.com/QNetITQ/WaveFox/assets/85301851/2817ee70-793b-40e6-a77e-8e62f9bfa87e)
 
   </details>
-  
+
 - Go to `about:config` and activate the keys below
 
   - `toolkit.legacyUserProfileCustomizations.stylesheets`
   - `layout.css.has-selector.enabled`
   - `svg.context-properties.content.enabled`
-  
-- Specify the desired shape of the tabs and restart the browser
+
+- Specify the desired shape of the tabs
 
   <details>
   <summary>How to create keys?</summary>
@@ -136,16 +139,21 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 ## Optional
 
 ### Adding third-party styles
+
 Create a file `third_party_custom_styles.css`, add the desired styles inside and put it in the `chrome` folder. Please note that this file has maximum execution priority. It will overwrite all styles, regardless of selector specificity. I make no guarantees of compatibility and will not resolve any style conflicts you may encounter.
 
 - `userChrome.Style.ThirdParty.Enabled`
 
+<i>Functionality that will not be part of the style will be published in the [discussions](https://github.com/QNetITQ/WaveFox/discussions) section as requests from users.</i>
+
 ### Windows Accent Color
+
 ![изображение](https://github.com/QNetITQ/WaveFox/assets/85301851/55b01904-6620-4e36-9b6d-91b092db725c)
 
 - `browser.theme.windows.accent-color-in-tabs.enabled`
 
 ### Linux Transparency
+
 Requires Linux with transparency support. Tested on Manjaro KDE + [ForceBlur](https://github.com/esjeon/kwin-forceblur). Works only with the system theme.
 
 ![Снимок5](https://github.com/QNetITQ/WaveFox/assets/85301851/3b4dcfc8-217d-48a1-aba7-1621f9375f67)
@@ -155,67 +163,34 @@ Requires Linux with transparency support. Tested on Manjaro KDE + [ForceBlur](ht
 - `userChrome.Linux.Transparency.High.Enabled`
 - `userChrome.Linux.Transparency.VeryHigh.Enabled`
 - `gfx.webrender.all` (Required key)
+- `browser.tabs.inTitlebar` > `1` (Required key)
 
-### Toolbar Transparency
-Works only with the system theme.
-![изображение](https://user-images.githubusercontent.com/85301851/165526704-4f7486c4-f330-4c86-a25d-6ed8ab2affe4.png)
+### Tab Bar Borders and Shadows
 
-- `userChrome.Toolbar.Transparency.Low.Enabled`
-- `userChrome.Toolbar.Transparency.Medium.Enabled`
-- `userChrome.Toolbar.Transparency.High.Enabled`
-- `userChrome.Toolbar.Transparency.VeryHigh.Enabled`
-
-### Tab Frame
-Two tab frames are available. Both consist of type, color and saturation. Can be used individually or simultaneously. In most cases there is no point in using both. However, it can be useful if there is not enough contrast.
+Incompatible with AMO themes.
 ![изображение](https://user-images.githubusercontent.com/85301851/152011749-4d5619b3-0fd8-40f9-a3dc-96be31839971.png)
 
-##### Light Theme
+##### Borders (Light Theme)
 
-###### Type
+- `userChrome.LightTheme.Tabs.Borders.Enabled`
 
-- `userChrome.LightTheme.TabFrameType.Border.Enabled`
-- `userChrome.LightTheme.TabFrameType.Shadow.Enabled`
-- `userChrome.LightTheme.AdditionalTabFrameType.Border.Enabled`
-- `userChrome.LightTheme.AdditionalTabFrameType.Shadow.Enabled`
-###### Color
-- `userChrome.LightTheme.TabFrameColor.White.Enabled`
-- `userChrome.LightTheme.TabFrameColor.Black.Enabled`
-- `userChrome.LightTheme.AdditionalTabFrameColor.White.Enabled`
-- `userChrome.LightTheme.AdditionalTabFrameColor.Black.Enabled`
-###### Saturation
+##### Borders (Dark Theme)
 
-- `userChrome.LightTheme.TabFrameSaturation.Low.Enabled`
-- `userChrome.LightTheme.TabFrameSaturation.Medium.Enabled`
-- `userChrome.LightTheme.TabFrameSaturation.High.Enabled`
-- `userChrome.LightTheme.TabFrameSaturation.VeryHigh.Enabled`
-- `userChrome.LightTheme.AdditionalTabFrameSaturation.Low.Enabled`
-- `userChrome.LightTheme.AdditionalTabFrameSaturation.Medium.Enabled`
-- `userChrome.LightTheme.AdditionalTabFrameSaturation.High.Enabled`
-- `userChrome.LightTheme.AdditionalTabFrameSaturation.VeryHigh.Enabled`
+- `userChrome.DarkTheme.Tabs.Borders.Enabled`
 
-##### Dark Theme
+##### Shadows (Light Theme)
 
-###### Type
+- `userChrome.LightTheme.Tabs.Shadows.Saturation.Low.Enabled`
+- `userChrome.LightTheme.Tabs.Shadows.Saturation.Medium.Enabled`
+- `userChrome.LightTheme.Tabs.Shadows.Saturation.High.Enabled`
+- `userChrome.LightTheme.Tabs.Shadows.Saturation.VeryHigh.Enabled`
 
-- `userChrome.DarkTheme.TabFrameType.Border.Enabled`
-- `userChrome.DarkTheme.TabFrameType.Shadow.Enabled`
-- `userChrome.DarkTheme.AdditionalTabFrameType.Border.Enabled`
-- `userChrome.DarkTheme.AdditionalTabFrameType.Shadow.Enabled`
-###### Color
-- `userChrome.DarkTheme.TabFrameColor.White.Enabled`
-- `userChrome.DarkTheme.TabFrameColor.Black.Enabled`
-- `userChrome.DarkTheme.AdditionalTabFrameColor.White.Enabled`
-- `userChrome.DarkTheme.AdditionalTabFrameColor.Black.Enabled`
-###### Saturation
+##### Shadows (Dark Theme)
 
-- `userChrome.DarkTheme.TabFrameSaturation.Low.Enabled`
-- `userChrome.DarkTheme.TabFrameSaturation.Medium.Enabled`
-- `userChrome.DarkTheme.TabFrameSaturation.High.Enabled`
-- `userChrome.DarkTheme.TabFrameSaturation.VeryHigh.Enabled`
-- `userChrome.DarkTheme.AdditionalTabFrameSaturation.Low.Enabled`
-- `userChrome.DarkTheme.AdditionalTabFrameSaturation.Medium.Enabled`
-- `userChrome.DarkTheme.AdditionalTabFrameSaturation.High.Enabled`
-- `userChrome.DarkTheme.AdditionalTabFrameSaturation.VeryHigh.Enabled`
+- `userChrome.DarkTheme.Tabs.Shadows.Saturation.Low.Enabled`
+- `userChrome.DarkTheme.Tabs.Shadows.Saturation.Medium.Enabled`
+- `userChrome.DarkTheme.Tabs.Shadows.Saturation.High.Enabled`
+- `userChrome.DarkTheme.Tabs.Shadows.Saturation.VeryHigh.Enabled`
 
 ### Tab Separators
 
@@ -270,12 +245,14 @@ By default context menus follow the selected interface density, but it is possib
 - `userChrome.Tabs.SelectedTabIndicator.Enabled`
 
 ### Tabs On Bottom
+
 ![Снимок](https://github.com/QNetITQ/WaveFox/assets/85301851/514cf30d-a417-48cb-bfd1-0e77c9df1bf4)
 
 - `userChrome.Tabs.TabsOnBottom.Enabled`
 - `browser.tabs.inTitlebar` (Required key. Set the value to 0)
 
 ### One Line
+
 ![Снимок](https://github.com/QNetITQ/WaveFox/assets/85301851/05bba314-643d-46f3-a09c-b3ac31f9761d)
 
 - `userChrome.OneLine.TabBarFirst.Enabled`
@@ -284,6 +261,7 @@ By default context menus follow the selected interface density, but it is possib
 - `svg.context-properties.content.enabled` (Required key)
 
 Low values are better for ultra widescreen monitors
+
 - `userChrome.OneLine.NavBarWidth.Low.Enabled`
 - `userChrome.OneLine.NavBarWidth.Medium.Enabled`
 - `userChrome.OneLine.NavBarWidth.High.Enabled`
