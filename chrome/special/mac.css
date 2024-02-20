@@ -1,14 +1,15 @@
-:root[tabsintitlebar]:not(:-moz-lwtheme)
+:root[tabsintitlebar]:not(:-moz-lwtheme, :-moz-window-inactive)
 {
-    appearance: -moz-mac-source-list !important;
+    appearance: menupopup !important;
 
     #navigator-toolbox
     {
         background-color: transparent !important;
     }
 
-    .tab-content:not(:hover):-moz-window-inactive
+    .titlebar-color
     {
-        opacity: 0.5 !important;
+        --toolbarbutton-hover-background: color-mix(in srgb, currentColor 17%, transparent) !important;
+        --toolbarbutton-active-background: color-mix(in srgb, currentColor 30%, transparent) !important;
     }
 }

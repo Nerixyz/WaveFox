@@ -22,16 +22,14 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 ###### Have a question not related to this project? These resources will help you
 
 - [Mozilla support](https://support.mozilla.org/en-US/)
-- [Reddit (Main)](https://www.reddit.com/r/firefox)
-- [Reddit (Alt)](https://www.reddit.com/r/MozillaFirefox)
+- [Reddit](https://www.reddit.com/r/firefox)
 - [Reddit (CSS)](https://www.reddit.com/r/FirefoxCSS)
 
 ## Installation
 
 - ##### Minimum Requirements
-
-  - Firefox 120 + [WaveFox v1.6.120](https://github.com/QNetITQ/WaveFox/tree/v1.6.120)
-  - Firefox 119 + [WaveFox v1.6.119](https://github.com/QNetITQ/WaveFox/tree/v1.6.119)
+  - Firefox 123 + [WaveFox v1.6.123](https://github.com/QNetITQ/WaveFox/tree/v1.6.123)
+  - Firefox 122 + [WaveFox v1.6.122](https://github.com/QNetITQ/WaveFox/tree/v1.6.122)
   - Firefox 115 ESR + [WaveFox v1.6.115.0.3](https://github.com/QNetITQ/WaveFox/tree/v1.6.115)
   - Windows
   - MacOS
@@ -52,7 +50,6 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 - Go to `about:config` and activate the keys below
 
   - `toolkit.legacyUserProfileCustomizations.stylesheets`
-  - `layout.css.has-selector.enabled`
   - `svg.context-properties.content.enabled`
 
 - Specify the desired shape of the tabs
@@ -136,6 +133,10 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 
   - `userChrome.Tabs.Option12.Enabled`
 
+  ##### Tabs (Option 13)
+  ![изображение](https://github.com/QNetITQ/WaveFox/assets/85301851/906299f9-94e6-4a69-9191-202c94525ae6)
+  - `userChrome.Tabs.Option13.Enabled`
+
 ## Optional
 
 ### Adding third-party styles
@@ -153,8 +154,7 @@ Create a file `third_party_custom_styles.css`, add the desired styles inside and
 - `browser.theme.windows.accent-color-in-tabs.enabled`
 
 ### Linux Transparency
-
-Requires Linux with transparency support. Tested on Manjaro KDE + [ForceBlur](https://github.com/esjeon/kwin-forceblur). Works only with the system theme.
+Requires Linux with transparency support. Tested on Manjaro KDE + [ForceBlur](https://github.com/esjeon/kwin-forceblur). Works only with the system theme. If you encounter a ghosting effect, increase the blur ([Issue #102](https://github.com/QNetITQ/WaveFox/issues/102)).
 
 ![Снимок5](https://github.com/QNetITQ/WaveFox/assets/85301851/3b4dcfc8-217d-48a1-aba7-1621f9375f67)
 
