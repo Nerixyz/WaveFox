@@ -1,9 +1,10 @@
-@layer LowPriority, HighPriority; 
+@layer LowPriority, HighPriority;
 
 @import "special/windows.css" layer(HighPriority) /* supports() */ (-moz-platform: windows);
 @import "special/linux.css"   layer(HighPriority) /* supports() */ (-moz-platform: linux);
 @import "special/mac.css"     layer(HighPriority) /* supports() */ (-moz-platform: macos);
-@import "third_party_custom_styles.css" (-moz-bool-pref: "userChrome.Style.ThirdParty.Enabled");
+@import "Lepton_Icons/icons/Lepton_Icons.css" /* layer() supports() */ (-moz-bool-pref: "userChrome.Menu.Icons.LeptonIcons.Enabled");
+@import "third_party_custom_styles.css"       /* layer() supports() */ (-moz-bool-pref: "userChrome.Style.ThirdParty.Enabled");
 
 @import "special/nerixAdjustments.css" layer(HighPriority);
 
@@ -70,7 +71,6 @@
         --right-svg:  url("special/tabs/option_6/right_corners.svg");
         
         --tab-first-last-inline-margin: calc(var(--tab-min-height) / 4);
-        --outer-drop-border-offset: 1px;
     }
 
     @media (-moz-bool-pref: "userChrome.Tabs.Option8.Enabled")
@@ -80,7 +80,6 @@
         --right-svg:  url("special/tabs/option_7/right_corners.svg");
         
         --tab-first-last-inline-margin: calc(var(--tab-min-height) / 4);
-        --outer-drop-border-offset: 1px;
     }
 
     @media (-moz-bool-pref: "userChrome.Tabs.Option9.Enabled")
@@ -90,7 +89,6 @@
         --right-svg:  url("special/tabs/option_8/right_corners.svg");
         
         --tab-first-last-inline-margin: calc(var(--tab-min-height) / 2 - 6px);
-        --outer-drop-border-offset: 1px;
     }
 
     @media (-moz-bool-pref: "userChrome.Tabs.Option10.Enabled")
@@ -100,7 +98,6 @@
         --right-svg:  url("special/tabs/option_9/right_corners.svg");
         
         --tab-first-last-inline-margin: calc(var(--tab-min-height) / 2);
-        --outer-drop-border-offset: 1px;
     }
 
     @media (-moz-bool-pref: "userChrome.Tabs.Option11.Enabled")
@@ -110,7 +107,6 @@
         --right-svg:  url("special/tabs/option_10/right_corners.svg");
         
         --tab-first-last-inline-margin: calc(var(--tab-min-height) / 2);
-        --outer-drop-border-offset: 1px;
     }
 
     @media (-moz-bool-pref: "userChrome.Tabs.Option12.Enabled")
@@ -120,7 +116,6 @@
         --right-svg:  url("special/tabs/option_11/right_corners.svg");
         
         --tab-first-last-inline-margin: calc(var(--tab-min-height) / 2);
-        --outer-drop-border-offset: 1px;
     }
 
     @media (-moz-bool-pref: "userChrome.Tabs.Option13.Enabled")
@@ -130,7 +125,6 @@
         --right-svg:  url("special/tabs/option_12/right_corners.svg");
         
         --tab-first-last-inline-margin: calc(var(--tab-min-height) / 2);
-        --outer-drop-border-offset: 1px;
     }
 
     /* -------------------- Floating Tabs -------------------- */
@@ -149,7 +143,6 @@
         --tab-bg-block-margin: var(--tab-block-margin);
         --tab-inline-padding: var(--tab-first-last-inline-margin);
         --tab-separator-offset: var(--tab-first-last-inline-margin);
-        --tab-attention-indicator-position: center bottom calc(((var(--tab-min-height) - 16px) / 2 - 4px) / 2 + var(--tab-block-margin));
     }
 
     /* -------------------- Attached Tabs -------------------- */
@@ -170,7 +163,6 @@
         --tab-bg-block-margin: 0px;
         --tab-inline-padding: 0px;
         --tab-separator-offset: 0px;
-        --tab-attention-indicator-position: center bottom calc(((var(--tab-min-height) - 16px) / 2 - 4px) / 2);
     }
 }
 
@@ -288,82 +280,112 @@
 
 /* ---------------------------------------- Tab Bar Borders ---------------------------------------- */
 
-@media (-moz-bool-pref: "userChrome.LightTheme.Tabs.Borders.Enabled")
+@media (-moz-bool-pref: "userChrome.LightTheme.Tabs.Borders.Saturation.Low.Enabled")      or
+       (-moz-bool-pref: "userChrome.LightTheme.Tabs.Borders.Saturation.Medium.Enabled")   or
+       (-moz-bool-pref: "userChrome.LightTheme.Tabs.Borders.Saturation.High.Enabled")     or
+       (-moz-bool-pref: "userChrome.LightTheme.Tabs.Borders.Saturation.VeryHigh.Enabled")
 {
     @media (prefers-color-scheme: light)
     {
         :root
         {
-            --my-border-width: 1px;
-            --my-border-color: var(--chrome-content-separator-color);
+            --additional-shadow-blur: 2px;
+            --additional-shadow-color: rgb(0, 0, 0);
 
-            --outer-box-border: 0 0 0 var(--my-border-width) var(--my-border-color);
+            --additional-outer-box-shadow: 0
+                                           0
+                                           var(--additional-shadow-blur)
+                                           color-mix(in srgb, var(--additional-shadow-color) var(--additional-shadow-saturation), transparent);
 
-            --inner-box-border: inset 0 calc(-1 * var(--my-border-width)) 0 var(--my-border-color);
+            --additional-inner-box-shadow: inset
+                                           0
+                                           calc(-1 * var(--additional-shadow-blur))
+                                           var(--additional-shadow-blur)
+                                           calc(-1 * var(--additional-shadow-blur))
+                                           color-mix(in srgb, var(--additional-shadow-color) var(--additional-shadow-saturation), transparent);
 
-            --outer-drop-border: drop-shadow(
-                                 0
-                                 calc(-1 * var(--my-border-width))
-                                 0
-                                 var(--my-border-color))
+            --additional-outer-drop-shadow: drop-shadow(
+                                            0
+                                            0
+                                            calc(var(--additional-shadow-blur) / 2)
+                                            color-mix(in srgb, var(--additional-shadow-color) var(--additional-shadow-saturation), transparent));
 
-                                 drop-shadow(
-                                 var(--my-border-width)
-                                 var(--outer-drop-border-offset, 0)
-                                 0
-                                 var(--my-border-color))
+            /* ---------- Saturation ---------- */
 
-                                 drop-shadow(
-                                 0
-                                 var(--my-border-width)
-                                 0
-                                 var(--my-border-color))
+            @media (-moz-bool-pref: "userChrome.LightTheme.Tabs.Borders.Saturation.Low.Enabled")
+            {
+                --additional-shadow-saturation: 10%;
+            }
 
-                                 drop-shadow(
-                                 calc(-1 * var(--my-border-width))
-                                 var(--outer-drop-border-offset, 0)
-                                 0
-                                 var(--my-border-color));
+            @media (-moz-bool-pref: "userChrome.LightTheme.Tabs.Borders.Saturation.Medium.Enabled")
+            {
+                --additional-shadow-saturation: 25%;
+            }
+
+            @media (-moz-bool-pref: "userChrome.LightTheme.Tabs.Borders.Saturation.High.Enabled")
+            {
+                --additional-shadow-saturation: 50%;
+            }
+
+            @media (-moz-bool-pref: "userChrome.LightTheme.Tabs.Borders.Saturation.VeryHigh.Enabled")
+            {
+                --additional-shadow-saturation: 100%;
+            }
         }
     }
 }
 
-@media (-moz-bool-pref: "userChrome.DarkTheme.Tabs.Borders.Enabled")
+@media (-moz-bool-pref: "userChrome.DarkTheme.Tabs.Borders.Saturation.Low.Enabled")      or
+       (-moz-bool-pref: "userChrome.DarkTheme.Tabs.Borders.Saturation.Medium.Enabled")   or
+       (-moz-bool-pref: "userChrome.DarkTheme.Tabs.Borders.Saturation.High.Enabled")     or
+       (-moz-bool-pref: "userChrome.DarkTheme.Tabs.Borders.Saturation.VeryHigh.Enabled")
 {
     @media (prefers-color-scheme: dark)
     {
         :root
         {
-            --my-border-width: 1px;
-            --my-border-color: var(--chrome-content-separator-color);
+            --additional-shadow-blur: 2px;
+            --additional-shadow-color: rgb(0, 0, 0);
 
-            --outer-box-border: 0 0 0 var(--my-border-width) var(--my-border-color);
+            --additional-outer-box-shadow: 0
+                                           0
+                                           var(--additional-shadow-blur)
+                                           color-mix(in srgb, var(--additional-shadow-color) var(--additional-shadow-saturation), transparent);
 
-            --inner-box-border: inset 0 calc(-1 * var(--my-border-width)) 0 var(--my-border-color);
+            --additional-inner-box-shadow: inset
+                                           0
+                                           calc(-1 * var(--additional-shadow-blur))
+                                           var(--additional-shadow-blur)
+                                           calc(-1 * var(--additional-shadow-blur))
+                                           color-mix(in srgb, var(--additional-shadow-color) var(--additional-shadow-saturation), transparent);
 
-            --outer-drop-border: drop-shadow(
-                                 0
-                                 calc(-1 * var(--my-border-width))
-                                 0
-                                 var(--my-border-color))
+            --additional-outer-drop-shadow: drop-shadow(
+                                            0
+                                            0
+                                            calc(var(--additional-shadow-blur) / 2)
+                                            color-mix(in srgb, var(--additional-shadow-color) var(--additional-shadow-saturation), transparent));
 
-                                 drop-shadow(
-                                 var(--my-border-width)
-                                 var(--outer-drop-border-offset, 0)
-                                 0
-                                 var(--my-border-color))
+            /* ---------- Saturation ---------- */
 
-                                 drop-shadow(
-                                 0
-                                 var(--my-border-width)
-                                 0
-                                 var(--my-border-color))
+            @media (-moz-bool-pref: "userChrome.DarkTheme.Tabs.Borders.Saturation.Low.Enabled")
+            {
+                --additional-shadow-saturation: 25%;
+            }
 
-                                 drop-shadow(
-                                 calc(-1 * var(--my-border-width))
-                                 var(--outer-drop-border-offset, 0)
-                                 0
-                                 var(--my-border-color));
+            @media (-moz-bool-pref: "userChrome.DarkTheme.Tabs.Borders.Saturation.Medium.Enabled")
+            {
+                --additional-shadow-saturation: 50%;
+            }
+
+            @media (-moz-bool-pref: "userChrome.DarkTheme.Tabs.Borders.Saturation.High.Enabled")
+            {
+                --additional-shadow-saturation: 75%;
+            }
+
+            @media (-moz-bool-pref: "userChrome.DarkTheme.Tabs.Borders.Saturation.VeryHigh.Enabled")
+            {
+                --additional-shadow-saturation: 100%;
+            }
         }
     }
 }
@@ -372,8 +394,14 @@
 
 @media not (prefers-contrast)
 {
-    :root:not(:-moz-lwtheme)
+    :root:not([lwtheme])
     {
+        .titlebar-color
+        {
+            --toolbarbutton-hover-background: color-mix(in srgb, currentColor 17%, transparent) !important;
+            --toolbarbutton-active-background: color-mix(in srgb, currentColor 30%, transparent) !important;
+        }
+
         .tabbrowser-tab[visuallyselected]
         {
             color: var(--toolbar-color) !important;
@@ -393,6 +421,12 @@
          [style*="--lwt-accent-color: rgb(28, 27, 34); --lwt-text-color: rgba(251, 251, 254)"]
         )
 {
+    .titlebar-color
+    {
+        --toolbarbutton-hover-background: color-mix(in srgb, currentColor 17%, transparent) !important;
+        --toolbarbutton-active-background: color-mix(in srgb, currentColor 30%, transparent) !important;
+    }
+
     .tabbrowser-tab[visuallyselected]
     {
         color: var(--toolbar-color) !important;
@@ -449,27 +483,136 @@
     background-position: var(--tab-attention-indicator-position) !important;
 }
 
+/* ---------------------------------------- Toolbar Transparency ---------------------------------------- */
+
+:root[tabsintitlebar]:not([lwtheme])
+{
+    @media (-moz-bool-pref: "userChrome.Toolbar.Transparency.Low.Enabled")
+    {
+        --shadow-color: transparent;
+        --additional-shadow-color: transparent;
+        --toolbarbutton-hover-background: color-mix(in srgb, currentColor 17%, transparent) !important;
+        --toolbarbutton-active-background: color-mix(in srgb, currentColor 30%, transparent) !important;
+        --urlbar-box-hover-bgcolor: color-mix(in srgb, currentColor 17%, transparent) !important;
+        --urlbar-box-active-bgcolor: color-mix(in srgb, currentColor 30%, transparent) !important;
+
+        .tabbrowser-tab[visuallyselected] .tab-background,
+        #nav-bar,
+        #PersonalToolbar
+        {
+            background-color: color-mix(in srgb, var(--toolbar-bgcolor), transparent 25%) !important;
+        }
+
+        #urlbar:not([focused], [open]) > #urlbar-background,
+        #searchbar:not(:focus-within)
+        {
+            background-color: color-mix(in srgb, var(--toolbar-field-background-color), transparent 25%) !important;
+        }
+    }
+
+    @media (-moz-bool-pref: "userChrome.Toolbar.Transparency.Medium.Enabled")
+    {
+        --shadow-color: transparent;
+        --additional-shadow-color: transparent;
+        --toolbarbutton-hover-background: color-mix(in srgb, currentColor 17%, transparent) !important;
+        --toolbarbutton-active-background: color-mix(in srgb, currentColor 30%, transparent) !important;
+        --urlbar-box-hover-bgcolor: color-mix(in srgb, currentColor 17%, transparent) !important;
+        --urlbar-box-active-bgcolor: color-mix(in srgb, currentColor 30%, transparent) !important;
+
+        .tabbrowser-tab[visuallyselected] .tab-background,
+        #nav-bar,
+        #PersonalToolbar
+        {
+            background-color: color-mix(in srgb, var(--toolbar-bgcolor), transparent 50%) !important;
+        }
+        
+        #urlbar:not([focused], [open]) > #urlbar-background,
+        #searchbar:not(:focus-within)
+        {
+            background-color: color-mix(in srgb, var(--toolbar-field-background-color), transparent 50%) !important;
+        }
+    }
+
+    @media (-moz-bool-pref: "userChrome.Toolbar.Transparency.High.Enabled")
+    {
+        --shadow-color: transparent;
+        --additional-shadow-color: transparent;
+        --toolbarbutton-hover-background: color-mix(in srgb, currentColor 17%, transparent) !important;
+        --toolbarbutton-active-background: color-mix(in srgb, currentColor 30%, transparent) !important;
+        --urlbar-box-hover-bgcolor: color-mix(in srgb, currentColor 17%, transparent) !important;
+        --urlbar-box-active-bgcolor: color-mix(in srgb, currentColor 30%, transparent) !important;
+
+        .tabbrowser-tab[visuallyselected] .tab-background,
+        #nav-bar,
+        #PersonalToolbar
+        {
+            background-color: color-mix(in srgb, var(--toolbar-bgcolor), transparent 75%) !important;
+        }
+
+        #urlbar:not([focused], [open]) > #urlbar-background,
+        #searchbar:not(:focus-within)
+        {
+            background-color: color-mix(in srgb, var(--toolbar-field-background-color), transparent 75%) !important;
+        }
+    }
+    
+    @media (-moz-bool-pref: "userChrome.Toolbar.Transparency.VeryHigh.Enabled")
+    {
+        --toolbarbutton-hover-background: color-mix(in srgb, currentColor 17%, transparent) !important;
+        --toolbarbutton-active-background: color-mix(in srgb, currentColor 30%, transparent) !important;
+        --urlbar-box-hover-bgcolor: color-mix(in srgb, currentColor 17%, transparent) !important;
+        --urlbar-box-active-bgcolor: color-mix(in srgb, currentColor 30%, transparent) !important;
+
+        #nav-bar,
+        #urlbar:not([focused], [open]) > #urlbar-background,
+        #searchbar:not(:focus-within),
+        #PersonalToolbar
+        {
+            background-color: transparent !important;
+        }
+        
+        #TabsToolbar::before, #nav-bar, #PersonalToolbar
+        {
+            box-shadow: none !important;
+        }
+    }
+}
+
 /* ---------------------------------------- Main Window ---------------------------------------- */
 
 :root
 {
     --tab-shadow-max-size: 0px !important;
-    --tabs-navbar-shadow-size: 0px !important;
+    --tab-attention-indicator-position: 50% calc(50% + 12px);
+}
+
+/* ---------------------------------------- Nav Bar ---------------------------------------- */
+
+#nav-bar
+{
+    border: none !important;
 }
 
 /* ---------------------------------------- Titlebar ---------------------------------------- */
 
-:root[tabsintitlebar]:-moz-window-inactive
+:root[tabsintitlebar]
 {
     #titlebar
     {
+        will-change: auto !important;
+        transition: none !important;
         opacity: 1 !important;
     }
 
     .titlebar-color
     {
-        color: color-mix(in srgb, currentColor 60%, transparent) !important;
-        --toolbarbutton-icon-fill: currentColor !important;
+        will-change: auto !important;
+        transition: color var(--inactive-window-transition) !important;
+    }
+
+    &:-moz-window-inactive .titlebar-color
+    {
+        color: color-mix(in srgb, currentColor calc(var(--inactive-titlebar-opacity) * 100%), transparent) !important;
     }
 }
 
@@ -618,7 +761,7 @@ spacer[part="overflow-end-indicator"]
     {
         position: relative;
         z-index: 2 !important;
-        filter: var(--outer-drop-border, drop-shadow(0 0 0 transparent))
+        filter: var(--additional-outer-drop-shadow, drop-shadow(0 0 0 transparent))
                 var(--outer-drop-shadow, drop-shadow(0 0 0 transparent));
     }
 
@@ -650,6 +793,16 @@ spacer[part="overflow-end-indicator"]
         border-radius: 0px !important;
         pointer-events: none !important;
     }
+
+    &[pinned] .tab-content
+    {
+        padding-inline: calc((var(--tab-min-height) - 16px) / 2 + var(--pinned-tabs-width-offset, 0px)) !important;
+    }
+
+    &:not([pinned]) .tab-content
+    {
+        padding-inline: 10px !important;
+    }
 }
 
 .tab-drop-indicator
@@ -664,12 +817,7 @@ spacer[part="overflow-end-indicator"]
 
 .tabbrowser-tab[pending] .tab-icon-image
 {
-    opacity: 0.5 !important;
-}
-
-.tab-content
-{
-    padding-inline: calc((var(--tab-min-height) - 16px) / 2 + var(--pinned-tabs-width-offset, 0px)) !important;
+    filter: saturate(0) !important;
 }
 
 .tab-close-button
@@ -803,12 +951,10 @@ spacer[part="overflow-end-indicator"]
     position: absolute;
     width: 16px;
     height: 16px;
-    background-image: url("chrome://global/skin/media/picture-in-picture-open.svg");
-    background-size: 16px;
-    background-position: center center;
-    background-repeat: no-repeat;
-    fill: currentColor;
-    -moz-context-properties: fill;
+    background-color: currentColor;
+    mask-size: 16px 16px;
+    mask-position: center center;
+    mask-repeat: no-repeat;
 }
 
 :root:-moz-locale-dir(rtl) .tabbrowser-tab[pictureinpicture]:not([busy], [crashed]) .tab-icon-stack::before
@@ -830,13 +976,11 @@ spacer[part="overflow-end-indicator"]
 .tabbrowser-tab[pictureinpicture]:not([busy], [crashed]):not([soundplaying], [muted], [activemedia-blocked]) .tab-icon-stack::before
 {
     mask-image: url("special/Additional_Elements/PIP.svg");
-    mask-size: 100% 100%;
 }
 
 .tabbrowser-tab[pictureinpicture]:not([busy], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) .tab-icon-stack::before
 {
     mask-image: url("special/Additional_Elements/PIP_Sound.svg");
-    mask-size: 100% 100%;
 }
 
 /* -------------------- Tab Text -------------------- */
@@ -897,7 +1041,7 @@ spacer[part="overflow-end-indicator"]
     height: 100%;
     bottom: 0px;
     inset-inline-start: 0px;
-    box-shadow: var(--inner-box-border, inset 0 0 0 transparent),
+    box-shadow: var(--additional-inner-box-shadow, inset 0 0 0 transparent),
                 var(--inner-box-shadow, inset 0 0 0 transparent);
     pointer-events: none;
     z-index: 2;
@@ -1067,20 +1211,6 @@ spacer[part="overflow-end-indicator"]
 
 @media (-moz-bool-pref: "userChrome.Tabs.TabsOnBottom.Enabled")
 {
-    @media (-moz-bool-pref: "userChrome.Tabs.Option7.Enabled")  or
-           (-moz-bool-pref: "userChrome.Tabs.Option8.Enabled")  or
-           (-moz-bool-pref: "userChrome.Tabs.Option9.Enabled")  or
-           (-moz-bool-pref: "userChrome.Tabs.Option10.Enabled") or
-           (-moz-bool-pref: "userChrome.Tabs.Option11.Enabled") or
-           (-moz-bool-pref: "userChrome.Tabs.Option12.Enabled") or
-           (-moz-bool-pref: "userChrome.Tabs.Option13.Enabled")
-    {
-        :root
-        {
-            --outer-drop-border-offset: -1px;
-        }
-    }
-
     /* -------------------- Title Bar -------------------- */
 
     #titlebar
@@ -1138,29 +1268,11 @@ spacer[part="overflow-end-indicator"]
 @media (-moz-bool-pref: "userChrome.OneLine.TabBarFirst.Enabled") or
        (-moz-bool-pref: "userChrome.OneLine.NavBarFirst.Enabled")
 {
-    :root
-    {
-        @media (-moz-bool-pref: "userChrome.OneLine.NavBarWidth.Low.Enabled")
-        {
-            --navbar-width: 20%;
-        }
-
-        @media (-moz-bool-pref: "userChrome.OneLine.NavBarWidth.Medium.Enabled")
-        {
-            --navbar-width: 30%;
-        }
-
-        @media (-moz-bool-pref: "userChrome.OneLine.NavBarWidth.High.Enabled")
-        {
-            --navbar-width: 40%;
-        }
-    }
-
     @media (-moz-bool-pref: "userChrome.OneLine.TabBarFirst.Enabled")
     {
         #navigator-toolbox
         {
-            grid-template-columns: auto var(--navbar-width, 50%) !important;
+            grid-template-columns: auto minmax(auto, 0%) !important;
         }
 
         #titlebar
@@ -1173,7 +1285,7 @@ spacer[part="overflow-end-indicator"]
     {
         #navigator-toolbox
         {
-            grid-template-columns: var(--navbar-width, 50%) auto !important;
+            grid-template-columns: minmax(auto, 0%) auto !important;
         }
 
         #nav-bar
@@ -1182,51 +1294,27 @@ spacer[part="overflow-end-indicator"]
         }
     }
 
+    :root
+    {
+        --drag-space: 0px !important;
+    }
+
     #navigator-toolbox
     {
         display: grid !important;
-        align-items: end !important;
         -moz-window-dragging: drag !important;
-    }
-
-    #TabsToolbar::before
-    {
-        display: none !important;
     }
 
     /* -------------------- Nav Bar -------------------- */
 
     #nav-bar
     {
-        overflow: visible !important;
-        position: relative !important;
-        background-color: transparent !important;
-        z-index: 2 !important;
-    }
-
-    #nav-bar::before
-    {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        inset-block-end: 0px;
-        inset-inline-start: 0px;
-        background-image: var(--left-svg), var(--center-svg), var(--right-svg);
-        background-repeat: no-repeat, no-repeat, no-repeat;
-        fill: var(--toolbar-bgcolor);
-        -moz-context-properties: fill;
-        z-index: -1;
-        pointer-events: none;
-        filter: var(--outer-drop-border, drop-shadow(0 0 0 transparent))
-                var(--outer-drop-shadow, drop-shadow(0 0 0 transparent));
+        width: fit-content !important;
     }
 
     #urlbar-container,
     #search-container
     {
-        flex-shrink: 1 !important;
         padding-block: 0px !important;
     }
 
@@ -1235,39 +1323,18 @@ spacer[part="overflow-end-indicator"]
         --urlbar-container-height: var(--tab-min-height) !important;
     }
 
-    #urlbar
-    {
-        --urlbar-toolbar-height: var(--tab-min-height) !important;
-    }
-
-    /* -------------------- Bookmarks Bar -------------------- */
-
-    #PersonalToolbar
-    {
-        position: relative !important;
-        overflow: visible !important;
-    }
-
-    #PersonalToolbar::before
-    {
-        content: "";
-        display: block;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        inset-block-start: 0px;
-        inset-inline-start: 0px;
-        box-shadow: var(--outer-box-border, 0 0 0 transparent),
-                    var(--outer-box-shadow, 0 0 0 transparent);
-        pointer-events: none;
-        clip-path: inset(-4px 0px 0px 0px);
-    }
-
     /* -------------------- Bookmarks Bar / Notifications -------------------- */
 
     #navigator-toolbox > *:not(#titlebar, #nav-bar)
     {
         grid-column: 1 / span 2 !important;
+    }
+
+    /* -------------------- Customization -------------------- */
+
+    #customization-panelWrapper
+    {
+        --panel-arrow-offset: 0px !important;
     }
 
     /* -------------------- Floating Tabs -------------------- */
@@ -1278,42 +1345,39 @@ spacer[part="overflow-end-indicator"]
            (-moz-bool-pref: "userChrome.Tabs.Option4.Enabled") or
            (-moz-bool-pref: "userChrome.Tabs.Option5.Enabled")
     {
+        #TabsToolbar::before
+        {
+            display: none !important;
+        }
+
         #nav-bar
         {
             margin: var(--tab-block-margin) !important;
+            border-radius: var(--tab-border-radius) !important;
+            box-shadow: var(--additional-outer-box-shadow, 0 0 0 transparent),
+                        var(--outer-box-shadow, 0 0 0 transparent) !important;
+        }
+        
+        #PersonalToolbar
+        {
+            margin-inline: var(--tab-block-margin) !important;
+            border-radius: var(--tab-border-radius) !important;
+            box-shadow: var(--additional-outer-box-shadow, 0 0 0 transparent),
+                        var(--outer-box-shadow, 0 0 0 transparent) !important;
         }
 
-        #nav-bar::before
+        #PersonalToolbar[collapsed="false"]
         {
-            background-size: auto 100%, calc(100% - var(--tab-min-height)) 100%, auto 100%;
-            background-position: left calc(-1 * var(--tab-min-height) / 2) center,
-                                 center center,
-                                 right calc(-1 * var(--tab-min-height) / 2) center;
+            margin-bottom: var(--tab-block-margin) !important;
         }
     }
 
     /* -------------------- Attached Tabs -------------------- */
 
-    @media (-moz-bool-pref: "userChrome.Tabs.Option6.Enabled") or
-           (-moz-bool-pref: "userChrome.Tabs.Option7.Enabled") or
-           (-moz-bool-pref: "userChrome.Tabs.Option8.Enabled")
-    {
-        #nav-bar
-        {
-            padding-inline: calc(var(--tab-min-height) / 4) !important;
-        }
-
-        #nav-bar::before
-        {
-            background-size: auto 100%, calc(100% - var(--tab-min-height) - var(--tab-min-height) / 2) 100%, auto 100%;
-            background-position: left calc(-1 * var(--tab-min-height) / 4) center,
-                                 center center,
-                                 right calc(-1 * var(--tab-min-height) / 4) center;
-            clip-path: inset(-4px 0px 0px 0px);
-        }
-    }
-
-    @media (-moz-bool-pref: "userChrome.Tabs.Option9.Enabled")  or
+    @media (-moz-bool-pref: "userChrome.Tabs.Option6.Enabled")  or
+           (-moz-bool-pref: "userChrome.Tabs.Option7.Enabled")  or
+           (-moz-bool-pref: "userChrome.Tabs.Option8.Enabled")  or
+           (-moz-bool-pref: "userChrome.Tabs.Option9.Enabled")  or
            (-moz-bool-pref: "userChrome.Tabs.Option10.Enabled") or
            (-moz-bool-pref: "userChrome.Tabs.Option11.Enabled") or
            (-moz-bool-pref: "userChrome.Tabs.Option12.Enabled") or
@@ -1321,14 +1385,24 @@ spacer[part="overflow-end-indicator"]
     {
         #nav-bar
         {
-            padding-inline: calc(var(--tab-min-height) / 2) !important;
-        }
+            position: relative !important;
+            overflow: visible !important;
 
-        #nav-bar::before
-        {
-            background-size: auto 100%, calc(100% - var(--tab-min-height) * 2) 100%, auto 100%;
-            background-position: left center, center center, right center;
-            clip-path: inset(-4px 0px 0px 0px);
+            &::before
+            {
+                content: "";
+                display: block;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                inset-inline-start: 0px;
+                inset-block-start: 0px;
+                pointer-events: none;
+                z-index: 0;
+                clip-path: inset(0 -4px);
+                box-shadow: var(--additional-outer-box-shadow, 0 0 0 transparent),
+                            var(--outer-box-shadow, 0 0 0 transparent);
+            }
         }
     }
 }
@@ -1513,180 +1587,179 @@ spacer[part="overflow-end-indicator"]
         position: relative;
         width: 20px;
         height: 20px;
-        background-size: 20px;
-        background-repeat: no-repeat;
-        background-position: center;
+        background-color: currentColor;
+        mask-size: 20px 20px;
+        mask-repeat: no-repeat;
+        mask-position: center center;
         margin-block: -2px;
         margin-inline: -2px 6px;
-        fill: currentColor;
-        -moz-context-properties: fill;
     }
 
     /* ----- Main Menu ----- */
     
     #appMenu-new-tab-button2::before
     {
-        background-image: var(--tab-new-page);
+        mask-image: var(--tab-new-page);
     }
     
     #appMenu-new-window-button2::before
     {
-        background-image: var(--window);
+        mask-image: var(--window);
     }
     
     #appMenu-new-private-window-button2::before
     {
-        background-image: var(--window-inprivate-account);
+        mask-image: var(--window-inprivate-account);
     }
     
     #appMenu-bookmarks-button::before
     {
-        background-image: var(--star-line-horizontal);
+        mask-image: var(--star-line-horizontal);
     }
     
     #appMenu-history-button::before
     {
-        background-image: var(--history);
+        mask-image: var(--history);
     }
     
     #appMenu-downloads-button::before
     {
-        background-image: var(--arrow-download);
+        mask-image: var(--arrow-download);
     }
     
     #appMenu-passwords-button::before
     {
-        background-image: var(--key);
+        mask-image: var(--key);
     }
     
     #appMenu-extensions-themes-button::before
     {
-        background-image: var(--puzzle-piece);
+        mask-image: var(--puzzle-piece);
     }
 
     #appMenu-print-button2::before
     {
-        background-image: var(--print);
+        mask-image: var(--print);
     }
 
     #appMenu-save-file-button2::before
     {
-        background-image: var(--save-edit);
+        mask-image: var(--save-edit);
     }
 
     #appMenu-find-button2::before
     {
-        background-image: var(--document-search);
+        mask-image: var(--document-search);
     }
 
     #appMenu-translate-button::before
     {
-        background-image: var(--translate);
+        mask-image: var(--translate);
     }
 
     #appMenu-settings-button::before
     {
-        background-image: var(--settings);
+        mask-image: var(--settings);
     }
 
     #appMenu-help-button2::before
     {
-        background-image: var(--question-circle);
+        mask-image: var(--question-circle);
     }
 
     /* ----- Main Menu (Submenus) ----- */
 
     #appmenu-moreTools-button::before
     {
-        background-image: var(--color);
+        mask-image: var(--color);
     }
 
     #appmenu-developer-tools-view > toolbarbutton:nth-child(1)::before
     {
-        background-image: var(--window-dev-tools);
+        mask-image: var(--window-dev-tools);
     }
 
     #appMenu_menu_openHelp::before
     {
-        background-image: var(--question-circle);
+        mask-image: var(--question-circle);
     }
 
     #appMenu_feedbackPage::before
     {
-        background-image: var(--person-feedback);
+        mask-image: var(--person-feedback);
     }
 
     #appMenu_menu_HelpPopup_reportPhishingtoolmenu::before
     {
-        background-image: var(--warning);
+        mask-image: var(--warning);
     }
 
     /* ----- Bookmark Menu ----- */
 
     #panelMenuBookmarkThisPage::before
     {
-        background-image: var(--star-add);
+        mask-image: var(--star-add);
     }
 
     #panelMenuBookmarkThisPage[starred]::before
     {
-        background-image: var(--star);
-        fill: var(--toolbar-field-icon-fill-attention) !important;
+        mask-image: var(--star);
+        background-color: var(--toolbarbutton-icon-fill-attention) !important;
     }
 
     :is(#panelMenu_showAllBookmarks, #BMB_bookmarksShowAllTop, #BMB_bookmarksShowAll)::before
     {
-        background-image: var(--star-line-horizontal);
+        mask-image: var(--star-line-horizontal);
     }
 
     /* ----- History Menu ----- */
 
     #PanelUI-historyMore::before
     {
-        background-image: var(--history);
+        mask-image: var(--history);
     }
 
     /* ----- Library Menu ----- */
 
     #appMenu-library-bookmarks-button::before
     {
-        background-image: var(--star-line-horizontal);
+        mask-image: var(--star-line-horizontal);
     }
 
     #appMenu-library-history-button::before
     {
-        background-image: var(--history);
+        mask-image: var(--history);
     }
 
     #appMenu-library-downloads-button::before
     {
-        background-image: var(--arrow-download);
+        mask-image: var(--arrow-download);
     }
 
     /* ----- Downloads Menu ----- */
 
     #downloadsHistory::before
     {
-        background-image: var(--arrow-download);
+        mask-image: var(--arrow-download);
     }
 
     /* ----- Developer Menu ----- */
 
     #PanelUI-developer-tools-view > toolbarbutton:nth-child(1)::before
     {
-        background-image: var(--window-dev-tools);
+        mask-image: var(--window-dev-tools);
     }
 
     /* ----- Sidebar Menu ----- */
 
     #sidebar-switcher-bookmarks::before
     {
-        background-image: var(--star-line-horizontal);
+        mask-image: var(--star-line-horizontal);
     }
 
     #sidebar-switcher-history::before
     {
-        background-image: var(--history);
+        mask-image: var(--history);
     }
 
     /* ---------- Non-Native Browser Menus ---------- */
@@ -1827,413 +1900,412 @@ spacer[part="overflow-end-indicator"]
         position: relative;
         width: 20px;
         height: 20px;
-        background-size: 20px;
-        background-repeat: no-repeat;
-        background-position: center;
+        background-color: currentColor;
+        mask-size: 20px 20px;
+        mask-repeat: no-repeat;
+        mask-position: center center;
         margin-block: -2px;
         margin-inline: var(--align-menu-icons);
-        fill: currentColor;
-        -moz-context-properties: fill;
     }
 
     /* ----- Toolbar Menubar Menu ----- */
 
     menuitem.viewCustomizeToolbar::before
     {
-        background-image: var(--color);
+        mask-image: var(--color);
     }
 
     /* ----- TabsToolbar Menu ----- */
 
     #toolbar-context-openANewTab::before
     {
-        background-image: var(--tab-new-page);
+        mask-image: var(--tab-new-page);
     }
 
     #toolbar-context-reloadSelectedTab::before
     {
-        background-image: var(--arrow-clockwise);
+        mask-image: var(--arrow-clockwise);
     }
 
     #toolbar-context-bookmarkSelectedTab::before
     {
-        background-image: var(--star-add);
+        mask-image: var(--star-add);
     }
 
     /* ----- Tab Menu ----- */
 
     #context_openANewTab::before
     {
-        background-image: var(--tab-new-page);
+        mask-image: var(--tab-new-page);
     }
 
     #context_reloadTab::before
     {
-        background-image: var(--arrow-clockwise);
+        mask-image: var(--arrow-clockwise);
     }
 
     #context_toggleMuteTab::before
     {
-        background-image: var(--speaker-mute);
+        mask-image: var(--speaker-mute);
     }
 
     #context_toggleMuteTab[muted]::before
     {
-        background-image: var(--speaker-2);
+        mask-image: var(--speaker-2);
     }
 
     :is(#context_pinTab, #context_unpinTab)::before
     {
-        background-image: var(--pin);
+        mask-image: var(--pin);
     }
 
     #context_duplicateTab::before
     {
-        background-image: var(--tab-desktop-copy);
+        mask-image: var(--tab-desktop-copy);
     }
 
     #context_bookmarkTab::before
     {
-        background-image: var(--star-add);
+        mask-image: var(--star-add);
     }
 
     #context_openTabInWindow::before
     {
-        background-image: var(--window);
+        mask-image: var(--window);
     }
 
     #context_closeTab::before
     {
-        background-image: var(--dismiss);
+        mask-image: var(--dismiss);
     }
 
     /* ----- Tabs Menu ----- */
 
     #context_reloadSelectedTabs::before
     {
-        background-image: var(--arrow-clockwise);
+        mask-image: var(--arrow-clockwise);
     }
 
     #context_toggleMuteSelectedTabs::before
     {
-        background-image: var(--speaker-mute);
+        mask-image: var(--speaker-mute);
     }
 
     #context_toggleMuteSelectedTabs[muted]::before
     {
-        background-image: var(--speaker-2);
+        mask-image: var(--speaker-2);
     }
 
     :is(#context_pinSelectedTabs, #context_unpinSelectedTabs)::before
     {
-        background-image: var(--pin);
+        mask-image: var(--pin);
     }
 
     #context_duplicateTabs::before
     {
-        background-image: var(--tab-desktop-copy);
+        mask-image: var(--tab-desktop-copy);
     }
 
     #context_bookmarkSelectedTabs::before
     {
-        background-image: var(--star-add);
+        mask-image: var(--star-add);
     }
 
     /* ----- Urlbar Menu ----- */
 
     menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(1)::before
     {
-        background-image: var(--arrow-undo);
+        mask-image: var(--arrow-undo);
     }
 
     menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(2)::before
     {
-        background-image: var(--arrow-redo);
+        mask-image: var(--arrow-redo);
     }
 
     menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(4)::before
     {
-        background-image: var(--cut);
+        mask-image: var(--cut);
     }
 
     menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(5)::before
     {
-        background-image: var(--copy);
+        mask-image: var(--copy);
     }
 
     menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(7)::before
     {
-        background-image: var(--clipboard-paste);
+        mask-image: var(--clipboard-paste);
     }
 
     menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(8)::before
     {
-        background-image: var(--clipboard-search);
+        mask-image: var(--clipboard-search);
     }
 
     menupopup.textbox-contextmenu:nth-child(3) > menuitem:nth-child(9)::before
     {
-        background-image: var(--delete);
+        mask-image: var(--delete);
     }
 
     /* ----- Searchbar Menu ----- */
 
     menupopup.textbox-contextmenu:nth-child(4) > menuitem:nth-child(1)::before
     {
-        background-image: var(--arrow-undo);
+        mask-image: var(--arrow-undo);
     }
 
     menupopup.textbox-contextmenu:nth-child(4) > menuitem:nth-child(2)::before
     {
-        background-image: var(--arrow-redo);
+        mask-image: var(--arrow-redo);
     }
 
     menupopup.textbox-contextmenu:nth-child(4) > menuitem:nth-child(4)::before
     {
-        background-image: var(--cut);
+        mask-image: var(--cut);
     }
 
     menupopup.textbox-contextmenu:nth-child(4) > menuitem:nth-child(5)::before
     {
-        background-image: var(--copy);
+        mask-image: var(--copy);
     }
 
     menupopup.textbox-contextmenu:nth-child(4) > menuitem:nth-child(6)::before
     {
-        background-image: var(--clipboard-paste);
+        mask-image: var(--clipboard-paste);
     }
 
     menupopup.textbox-contextmenu:nth-child(4) > menuitem:nth-child(7)::before
     {
-        background-image: var(--clipboard-search);
+        mask-image: var(--clipboard-search);
     }
 
     menupopup.textbox-contextmenu:nth-child(4) > menuitem:nth-child(8)::before
     {
-        background-image: var(--delete);
+        mask-image: var(--delete);
     }
 
     /* ----- PersonalToolbar Menu ----- */
 
     #placesContext_openBookmarkContainer\:tabs::before
     {
-        background-image: var(--tab-desktop);
+        mask-image: var(--tab-desktop);
     }
 
     #placesContext_new\:bookmark::before
     {
-        background-image: var(--star-add);
+        mask-image: var(--star-add);
     }
 
     #placesContext_new\:folder::before
     {
-        background-image: var(--folder-add);
+        mask-image: var(--folder-add);
     }
 
     #placesContext_paste::before
     {
-        background-image: var(--clipboard-paste);
+        mask-image: var(--clipboard-paste);
     }
 
     #placesContext_showAllBookmarks::before
     {
-        background-image: var(--star-line-horizontal);
+        mask-image: var(--star-line-horizontal);
     }
 
     /* ----- Bookmarks Menu ----- */
 
     #placesContext_open\:newtab::before
     {
-        background-image: var(--tab-new-page);
+        mask-image: var(--tab-new-page);
     }
 
     #placesContext_open\:newwindow::before
     {
-        background-image: var(--window);
+        mask-image: var(--window);
     }
 
     #placesContext_open\:newprivatewindow::before
     {
-        background-image: var(--window-inprivate-account);
+        mask-image: var(--window-inprivate-account);
     }
 
     #placesContext_show_bookmark\:info::before
     {
-        background-image: var(--edit);
+        mask-image: var(--edit);
     }
 
     #placesContext_deleteBookmark::before
     {
-        background-image: var(--delete);
+        mask-image: var(--delete);
     }
 
     #placesContext_cut::before
     {
-        background-image: var(--cut);
+        mask-image: var(--cut);
     }
 
     #placesContext_copy::before
     {
-        background-image: var(--copy);
+        mask-image: var(--copy);
     }
 
     #placesContext_paste_group::before
     {
-        background-image: var(--clipboard-paste);
+        mask-image: var(--clipboard-paste);
     }
 
     /* ----- Folder Menu ----- */
 
     #placesContext_show_folder\:info::before
     {
-        background-image: var(--edit);
+        mask-image: var(--edit);
     }
 
     #placesContext_deleteFolder::before
     {
-        background-image: var(--delete);
+        mask-image: var(--delete);
     }
 
     /* ---------- Web Menu ---------- */
 
     #context-savepage::before
     {
-        background-image: var(--save-edit);
+        mask-image: var(--save-edit);
     }
 
     #context-take-screenshot::before
     {
-        background-image: var(--camera-edit);
+        mask-image: var(--camera-edit);
     }
 
     #context-inspect::before
     {
-        background-image: var(--cursor-hover);
+        mask-image: var(--cursor-hover);
     }
 
     #context-copy::before
     {
-        background-image: var(--copy);
+        mask-image: var(--copy);
     }
 
     #context-print-selection::before
     {
-        background-image: var(--print);
+        mask-image: var(--print);
     }
 
     #context-searchselect::before
     {
-        background-image: var(--search);
+        mask-image: var(--search);
     }
 
     #context-viewimage::before
     {
-        background-image: var(--tab-desktop-image);
+        mask-image: var(--tab-desktop-image);
     }
 
     #context-saveimage::before
     {
-        background-image: var(--image-edit);
+        mask-image: var(--image-edit);
     }
 
     #context-copyimage-contents::before
     {
-        background-image: var(--image-copy);
+        mask-image: var(--image-copy);
     }
 
     #context-openlinkintab::before
     {
-        background-image: var(--tab-desktop);
+        mask-image: var(--tab-desktop);
     }
 
     #context-openlink::before
     {
-        background-image: var(--window);
+        mask-image: var(--window);
     }
 
     #context-openlinkprivate::before
     {
-        background-image: var(--window-inprivate-account);
+        mask-image: var(--window-inprivate-account);
     }
 
     #context-bookmarklink::before
     {
-        background-image: var(--star-add);
+        mask-image: var(--star-add);
     }
 
     #context-savelink::before
     {
-        background-image: var(--save-edit);
+        mask-image: var(--save-edit);
     }
 
     #context-copylink::before
     {
-        background-image: var(--link);
+        mask-image: var(--link);
     }
 
     #context-undo::before
     {
-        background-image: var(--arrow-undo);
+        mask-image: var(--arrow-undo);
     }
 
     #context-redo::before
     {
-        background-image: var(--arrow-redo);
+        mask-image: var(--arrow-redo);
     }
 
     #context-cut::before
     {
-        background-image: var(--cut);
+        mask-image: var(--cut);
     }
 
     #context-copy::before
     {
-        background-image: var(--copy);
+        mask-image: var(--copy);
     }
 
     #context-paste::before
     {
-        background-image: var(--clipboard-paste);
+        mask-image: var(--clipboard-paste);
     }
 
     #context-delete::before
     {
-        background-image: var(--delete);
+        mask-image: var(--delete);
     }
 
     #context-keywordfield::before
     {
-        background-image: var(--star-add);
+        mask-image: var(--star-add);
     }
 
     #context-media-play::before
     {
-        background-image: var(--play);
+        mask-image: var(--play);
     }
 
     #context-media-pause::before
     {
-        background-image: var(--pause);
+        mask-image: var(--pause);
     }
 
     #context-media-mute::before
     {
-        background-image: var(--speaker-mute);
+        mask-image: var(--speaker-mute);
     }
 
     #context-media-unmute::before
     {
-        background-image: var(--speaker-2);
+        mask-image: var(--speaker-2);
     }
 
     #context-viewvideo::before
     {
-        background-image: var(--tab-desktop);
+        mask-image: var(--tab-desktop);
     }
 
     #context-savevideo::before
     {
-        background-image: var(--save-edit);
+        mask-image: var(--save-edit);
     }
 
   }

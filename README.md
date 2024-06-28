@@ -19,6 +19,11 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 
 ![WaveFox_Preview](https://github.com/QNetITQ/WaveFox/assets/85301851/268bda8c-b987-45d1-966b-59992c18e66e)
 
+<details>
+  <summary>Counter</summary>
+    <div align='center'><a href='https://www.websitecounterfree.com'><img src='https://www.websitecounterfree.com/c.php?d=9&id=52856&s=3' border='0' alt='Free Website Counter'></a><br / ><small><a href='https://www.websitecounterfree.com' title="Free Website Counter">Free Website Counter</a></small></div>
+</details>
+
 ###### Have a question not related to this project? These resources will help you
 
 - [Mozilla support](https://support.mozilla.org/en-US/)
@@ -28,8 +33,7 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 ## Installation
 
 - ##### Minimum Requirements
-  - Firefox 123 + [WaveFox v1.6.123](https://github.com/QNetITQ/WaveFox/tree/v1.6.123)
-  - Firefox 122 + [WaveFox v1.6.122](https://github.com/QNetITQ/WaveFox/tree/v1.6.122)
+  - Firefox 128 (ESR) + [WaveFox v1.6.128](https://github.com/QNetITQ/WaveFox/tree/v1.6.128)
   - Firefox 115 ESR + [WaveFox v1.6.115.0.3](https://github.com/QNetITQ/WaveFox/tree/v1.6.115)
   - Windows
   - MacOS
@@ -50,8 +54,7 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 - Go to `about:config` and activate the keys below
 
   - `toolkit.legacyUserProfileCustomizations.stylesheets`
-  - `svg.context-properties.content.enabled`
-
+  
 - Specify the desired shape of the tabs
 
   <details>
@@ -140,21 +143,26 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 ## Optional
 
 ### Adding third-party styles
-
-Create a file `third_party_custom_styles.css`, add the desired styles inside and put it in the `chrome` folder. Please note that this file has maximum execution priority. It will overwrite all styles, regardless of selector specificity. I make no guarantees of compatibility and will not resolve any style conflicts you may encounter.
+Go to the `chrome` folder and paste the desired styles inside the `third_party_custom_styles.css` file. Please note that this file has maximum execution priority. It will overwrite all styles, regardless of selector specificity. I make no guarantees of compatibility and will not resolve any style conflicts you may encounter.
 
 - `userChrome.Style.ThirdParty.Enabled`
 
 <i>Functionality that will not be part of the style will be published in the [discussions](https://github.com/QNetITQ/WaveFox/discussions) section as requests from users.</i>
 
 ### Windows Accent Color
-
+Works only with the system theme.
 ![изображение](https://github.com/QNetITQ/WaveFox/assets/85301851/55b01904-6620-4e36-9b6d-91b092db725c)
 
 - `browser.theme.windows.accent-color-in-tabs.enabled`
 
+### MacOS Tinting / Vibrancy
+Works only with the system theme.
+
+- `browser.theme.macos.native-theme` (MacOS 11+ / Tinting)
+  - `widget.macos.titlebar-blend-mode.behind-window` (Vibrancy / Restart required)
+
 ### Linux Transparency
-Requires Linux with transparency support. Tested on Manjaro KDE + [ForceBlur](https://github.com/esjeon/kwin-forceblur). Works only with the system theme. If you encounter a ghosting effect, increase the blur ([Issue #102](https://github.com/QNetITQ/WaveFox/issues/102)).
+Requires Linux with transparency support. Tested on Manjaro KDE [Plasma 5](https://github.com/esjeon/kwin-forceblur) / [Plasma 6](https://github.com/taj-ny/kwin-forceblur). Works only with the system theme. If you encounter a ghosting effect, increase the blur.
 
 ![Снимок5](https://github.com/QNetITQ/WaveFox/assets/85301851/3b4dcfc8-217d-48a1-aba7-1621f9375f67)
 
@@ -162,8 +170,16 @@ Requires Linux with transparency support. Tested on Manjaro KDE + [ForceBlur](ht
 - `userChrome.Linux.Transparency.Medium.Enabled`
 - `userChrome.Linux.Transparency.High.Enabled`
 - `userChrome.Linux.Transparency.VeryHigh.Enabled`
-- `gfx.webrender.all` (Required key)
 - `browser.tabs.inTitlebar` > `1` (Required key)
+
+### Toolbar Transparency
+Works only with the system theme.
+![изображение](https://user-images.githubusercontent.com/85301851/165526704-4f7486c4-f330-4c86-a25d-6ed8ab2affe4.png)
+
+- `userChrome.Toolbar.Transparency.Low.Enabled`
+- `userChrome.Toolbar.Transparency.Medium.Enabled`
+- `userChrome.Toolbar.Transparency.High.Enabled`
+- `userChrome.Toolbar.Transparency.VeryHigh.Enabled`
 
 ### Tab Bar Borders and Shadows
 
@@ -171,12 +187,16 @@ Incompatible with AMO themes.
 ![изображение](https://user-images.githubusercontent.com/85301851/152011749-4d5619b3-0fd8-40f9-a3dc-96be31839971.png)
 
 ##### Borders (Light Theme)
-
-- `userChrome.LightTheme.Tabs.Borders.Enabled`
+- `userChrome.LightTheme.Tabs.Borders.Saturation.Low.Enabled`
+- `userChrome.LightTheme.Tabs.Borders.Saturation.Medium.Enabled`
+- `userChrome.LightTheme.Tabs.Borders.Saturation.High.Enabled`
+- `userChrome.LightTheme.Tabs.Borders.Saturation.VeryHigh.Enabled`
 
 ##### Borders (Dark Theme)
-
-- `userChrome.DarkTheme.Tabs.Borders.Enabled`
+- `userChrome.DarkTheme.Tabs.Borders.Saturation.Low.Enabled`
+- `userChrome.DarkTheme.Tabs.Borders.Saturation.Medium.Enabled`
+- `userChrome.DarkTheme.Tabs.Borders.Saturation.High.Enabled`
+- `userChrome.DarkTheme.Tabs.Borders.Saturation.VeryHigh.Enabled`
 
 ##### Shadows (Light Theme)
 
@@ -219,7 +239,24 @@ By default context menus follow the selected interface density, but it is possib
 
 - `userChrome.Menu.Icons.Regular.Enabled`
 - `userChrome.Menu.Icons.Filled.Enabled`
-- `svg.context-properties.content.enabled` (Required key)
+
+### Lepton Icons
+Icons from Lepton.css are now available. Please note that this is third-party code. I am not its author and do not support it. I will not solve any problems associated with these icons. They were added at the request of some users and work "As is". I will update this code according to the original source.
+
+- `svg.context-properties.content.enabled`
+- `userChrome.Menu.Icons.LeptonIcons.Enabled`
+  - `userChrome.icon.panel_full` or `userChrome.icon.panel_photon`
+  - `userChrome.icon.library`
+  - `userChrome.icon.panel`
+  - `userChrome.icon.menu`
+  - `userChrome.icon.context_menu`
+  - `userChrome.icon.global_menu`
+  - `userChrome.icon.global_menubar`
+  - `userChrome.icon.1-25px_stroke`
+  - `userChrome.icon.account_image_to_right`
+  - `userChrome.icon.account_label_to_right`
+  - `userChrome.icon.menu.full`
+  - `userChrome.icon.global_menu.mac`
 
 ### Drag Space
 
@@ -257,11 +294,3 @@ By default context menus follow the selected interface density, but it is possib
 
 - `userChrome.OneLine.TabBarFirst.Enabled`
 - `userChrome.OneLine.NavBarFirst.Enabled`
-- `browser.tabs.inTitlebar` (Enable this key if there are problems with window control buttons. Set the value to 0)
-- `svg.context-properties.content.enabled` (Required key)
-
-Low values are better for ultra widescreen monitors
-
-- `userChrome.OneLine.NavBarWidth.Low.Enabled`
-- `userChrome.OneLine.NavBarWidth.Medium.Enabled`
-- `userChrome.OneLine.NavBarWidth.High.Enabled`
