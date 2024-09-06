@@ -31,7 +31,12 @@ browser,
 .browserContainer,
 browser.display.background_color,
 tabbrowser tabpanels,
-browser[type='content-primary'],
-browser[type='content'] {
+browser[type="content-primary"],
+browser[type="content"] {
   background-color: #121212 !important;
+}
+
+/* line between chrome and content */
+#tabbrowser-tabbox {
+  box-shadow: none;
 }
