@@ -39,4 +39,5 @@ browser[type="content"] {
 /* line between chrome and content */
 #tabbrowser-tabbox {
   box-shadow: none !important;
+  outline: none !important;
 }
