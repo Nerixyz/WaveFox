@@ -41,3 +41,7 @@ browser[type="content"] {
   box-shadow: none !important;
   outline: none !important;
 }
+
+.tabbrowser-tab {
+  padding: 0 !important;
+}
