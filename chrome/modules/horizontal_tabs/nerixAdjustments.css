@@ -43,5 +43,5 @@ browser[type="content"] {
 }
 
 .tabbrowser-tab {
-  padding: 0 !important;
+  --tab-overflow-clip-margin: 0 !important;
 }
