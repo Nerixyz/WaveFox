@@ -41,7 +41,3 @@ browser[type="content"] {
   box-shadow: none !important;
   outline: none !important;
 }
-
-.tabbrowser-tab {
-  --tab-overflow-clip-margin: 0 !important;
-}
