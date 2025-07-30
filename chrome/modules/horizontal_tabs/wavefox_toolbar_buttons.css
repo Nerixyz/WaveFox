@@ -15,11 +15,6 @@
     outline: none !important;
 }
 
-#TabsToolbar #firefox-view-button:hover:not([open]) > .toolbarbutton-icon
-{
-    background-color: var(--toolbarbutton-hover-background) !important;
-}
-
 /* -------------------- Extensions menu -------------------- */
 
 #unified-extensions-panel
@@ -86,22 +81,8 @@
     margin-inline-end: calc(var(--toolbar-start-end-padding) - var(--toolbarbutton-outer-padding)) !important;
 }
 
-#tabs-newtab-button
+.tabbrowser-tab:not([hidden]) + #tabbrowser-arrowscrollbox-periphery > #tabs-newtab-button,
+.tabbrowser-tab:not([hidden]) + .tabbrowser-tab[hidden] + #tabbrowser-arrowscrollbox-periphery > #tabs-newtab-button
 {
     margin-inline-start: calc(-1 * var(--tab-first-last-inline-margin, 0px) / 2) !important;
 }
-
-.toolbarbutton-1:has(+ #tabbrowser-tabs:not([overflow])),
-.toolbarbutton-1:has(+ #tabbrowser-tabs[overflow][haspinnedtabs])
-{
-    margin-inline-end: calc(-1 * var(--tab-first-last-inline-margin, 0px) / 2) !important;
-    z-index: 1 !important;
-}
-
-/* ---------------------------------------- Roundings ---------------------------------------- */
-/*
-.browser-titlebar .toolbarbutton-1 > :is(.toolbarbutton-icon, .toolbarbutton-badge-stack)
-{
-    clip-path: inset(0px round 50px) !important;
-}
-*/

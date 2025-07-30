@@ -1,4 +1,4 @@
-@media (-moz-pref("userChrome.Tabs.SelectedTabIndicator.Enabled"))
+@media -moz-pref("WaveFox.Tabs.SelectedTabIndicator.Enabled")
 {
     .tabbrowser-tab[visuallyselected] .tab-loading-burst
     {
