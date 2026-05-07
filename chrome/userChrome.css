@@ -30,4 +30,4 @@
 
 /* ---------------------------------------- Third-party styles (Maximum priority) ---------------------------------------- */
 /* =) */
-@import "modules/horizontal_tabs/nerixAdjustments.css" layer(HighPriority) /* supports() */ not (-moz-pref("sidebar.verticalTabs", false));
+@import "modules/horizontal_tabs/nerixAdjustments.css" layer(HighPriority) /* supports() */;
