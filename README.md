@@ -24,10 +24,10 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 [Download Firefox](https://www.mozilla.org/en-US/firefox/all/#product-desktop-release) / [Download WaveFox](https://github.com/QNetITQ/WaveFox/releases) / [WaveFox Nightly](https://github.com/QNetITQ/WaveFox/tree/WaveFox-Nightly)
 
 <details>
-  <summary>WaveFox v1.8.142</summary>
+  <summary>WaveFox v1.9.150+</summary>
 
 - ##### Minimum Requirements
-  - Firefox 142
+  - Firefox 150+
   - Windows / MacOS / Linux
 
 - Download the `chrome` folder and put it in your user profile folder
@@ -37,26 +37,6 @@ I'm using Firefox Color: [color.firefox.com](https://color.firefox.com/?theme=XQ
 
 ### Tab Shapes
 
-##### Shape 1
-![изображение](https://github.com/user-attachments/assets/98d808c0-de87-4328-bd19-c885060adaec)
-
-- `WaveFox.Tabs.Shape` > 1
-  
-##### Shape 2
-![изображение](https://github.com/user-attachments/assets/15244c8d-e073-47f7-a84c-500bcf1f056d)
-
-- `WaveFox.Tabs.Shape` > 2
-  
-##### Shape 3
-![изображение](https://github.com/user-attachments/assets/ec6f06df-5f83-4408-8f39-8480cff5ca8b)
-
-- `WaveFox.Tabs.Shape` > 3
-  
-##### Shape 4
-![изображение](https://github.com/user-attachments/assets/112843be-7182-4a48-bc04-0f9211ddf7c7)
-
-- `WaveFox.Tabs.Shape` > 4
-  
 ##### Shape 5
 ![изображение](https://github.com/user-attachments/assets/cd6fb4a9-8cc7-4fd1-9f26-9acef5a4a121)
 
@@ -109,12 +89,19 @@ Requires Linux with transparency support. Works only with the system theme.
 ![Снимок5](https://github.com/QNetITQ/WaveFox/assets/85301851/3b4dcfc8-217d-48a1-aba7-1621f9375f67)
 
 - `WaveFox.Linux.Transparency.Enabled` and `browser.tabs.inTitlebar > 1`
+  - `WaveFox.Linux.Transparency.TextColor.White.Enabled`
 
 ### Toolbar Transparency
 Works only with the system theme.
 ![изображение](https://user-images.githubusercontent.com/85301851/165526704-4f7486c4-f330-4c86-a25d-6ed8ab2affe4.png)
 
 - `WaveFox.Toolbar.Transparency` > 1 or 2 or 3 or 4 and `browser.tabs.inTitlebar > 1`
+
+### Toolbar Roundings (Horizontal and Vertical tabs)
+Ability to control the rounding of browser bar elements.
+<img width="1778" height="120" alt="изображение" src="https://github.com/user-attachments/assets/ec10f079-fabc-4bdf-bfa5-ccd3125d5792" />
+
+- `WaveFox.Toolbar.Roundings` > 1 or 2
 
 ### Tab Bar Shadows
 Works only with System / Light / Dark theme.
@@ -130,11 +117,6 @@ Works only with System / Light / Dark theme.
 ![изображение](https://user-images.githubusercontent.com/85301851/152351312-f6ad4578-e7d5-40b7-8b2d-49388a750f54.png)
 
 - `WaveFox.Tabs.Separators` > 1 or 2 or 3 or 4
-
-### Background For Inactive Tabs
-![изображение](https://github.com/user-attachments/assets/56fc829a-3cb6-4009-a58c-485fc84f65e9)
-
-- `WaveFox.Tabs.Background.Inactive.Enabled`
 
 ### Icons (firefox-csshacks / Lepton) / (Horizontal and Vertical tabs)
 This is third-party code. I will update this code according to the original source.
@@ -165,32 +147,25 @@ The keys below are relevant only for the second option.
 - `WaveFox.DragSpace.TabBarLeftSide.Disabled`
 - `WaveFox.DragSpace.TabBarRightSide.Disabled`
 
-### Selected Tab Indicator
-![изображение](https://github.com/user-attachments/assets/e6d221d2-38b0-4890-9bbc-d5abc9b027c0)
-
-- `WaveFox.Tabs.SelectedTabIndicator.Enabled`
-
-### Tabs Below URL
+### Tabs Below URL (Floating Tabs Only)
 ![Снимок](https://github.com/QNetITQ/WaveFox/assets/85301851/514cf30d-a417-48cb-bfd1-0e77c9df1bf4)
 
 - `WaveFox.TabsBelowURL.Enabled` and `browser.tabs.inTitlebar > 0`
 
-### One Line
+### One Line (Floating Tabs Only)
 ![Снимок](https://github.com/QNetITQ/WaveFox/assets/85301851/05bba314-643d-46f3-a09c-b3ac31f9761d)
 
 - `WaveFox.OneLine` > 1 or 2
 
-### Floating Web Page (Horizontal and Vertical tabs)
+### Floating Web Page (Horizontal tabs)
 ![изображение](https://github.com/user-attachments/assets/26a19f9a-642b-4a10-a4f9-80d87cc42bdc)
 
 - `WaveFox.WebPage.Floating.Enabled`
 
-### Transparent Web Page (Experimentally) (Horizontal and Vertical tabs)
-Works only with system theme. Requires transparency support from the operating system. The quality of this option depends heavily on the specific website.
-![изображение](https://github.com/user-attachments/assets/99afc380-027a-46b3-b0d6-5cdf3c55a33e)
+### Toolbar Autohide (Vertical tabs)
+<img width="1727" height="918" alt="изображение" src="https://github.com/user-attachments/assets/bf786951-7633-4429-ada2-1639d2210263" />
 
-- `WaveFox.WebPage.Transparency` > 1 or 2 and `browser.tabs.allow_transparent_browser` (1 - New tab page only / 2 - All browser windows and all websites)
-  - `WaveFox.WebPage.Background.Saturation` > 1 or 2 or 3
+- `WaveFox.VerticalTabs.Toolbar.Autohide.Enabled`
 
 </details>
 
@@ -807,7 +782,7 @@ Low values are more suitable for high resolution monitors.
   <summary>How to enable blur on Linux?</summary>
 
 - [KDE Plasma 5](https://github.com/esjeon/kwin-forceblur)
-- [KDE Plasma 6](https://github.com/taj-ny/kwin-effects-forceblur)
+- [KDE Plasma 6](https://github.com/xarblu/kwin-effects-better-blur-dx)
 - [GNOME](https://github.com/aunetx/blur-my-shell)
 
 </details>
