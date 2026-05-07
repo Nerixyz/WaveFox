@@ -43,12 +43,12 @@
     {
         .tab-background
         {
-            background-color: var(--toolbar-bgcolor) !important;
+            background-color: var(--tab-selected-bgcolor) !important;
         }
 
         .tab-content
         {
-            color: var(--toolbar-color) !important;
+            color: var(--tab-selected-textcolor) !important;
         }
     }
 }

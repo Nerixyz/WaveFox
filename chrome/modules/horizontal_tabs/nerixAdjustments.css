@@ -1,5 +1,12 @@
 :root {
   --toolbarbutton-border-radius: 12px !important;
+  --urlbar-border-radius: 99px !important;
+}
+
+#urlbar {
+  --button-border-radius: calc(var(--urlbar-height)/2);
+  --urlbarview-border-radius: calc(var(--urlbar-height)/2);
+  --panel-border-color: #454545;
 }
 
 #statuspanel-label {
